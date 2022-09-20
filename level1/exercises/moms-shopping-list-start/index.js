@@ -36,7 +36,7 @@ form.addEventListener("submit", e => {
         li.append(editSubmitBtn);
         editSubmitBtn.textContent = 'Submit';
 
-        editSubmitBtn.addEventListener("click", (e) => {d                                                                                                                                                     
+        editSubmitBtn.addEventListener("click", (e) => {                                                                                                                                                     
             div.textContent = editInput.value;
             editInput.remove();
             editSubmitBtn.remove();

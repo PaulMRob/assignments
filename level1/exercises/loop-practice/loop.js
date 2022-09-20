@@ -46,4 +46,18 @@ for( let i = 0; i < peopleWhoWantToSeeMadMaxFuryRoad.length; i++ ){
 }
 
 //exercise 3)
+// this one didn't work wwhen i had my vars as const. but once i switched const to var it worked. Not sure why that is but i'm guessing it's the boolean. 
+var lightOn = false;
+var switches = [4, 6, 3, 2];
+for (var i = 0; i < switches.length; i++) {
+  for (var j = 0; j < switches[i]; j++) {
+    lightOn = !lightOn;
+  }
+}
+
+if (lightOn) {
+  console.log("the lights are on");
+} else {
+  console.log("the lights are off");
+}
 
