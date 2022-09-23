@@ -1,9 +1,9 @@
 const readline = require("readline-sync");
 const name = readline.question("What is your name? ");
-let gameOver = false;
-let key = false;
+let gameOver = false; //game runs while this condition is met.
+let key = false; //user does not have the key while this condition is met
 
-while (!gameOver) {
+while (!gameOver) { //while lloop runs while condition is met
     
     let answer = readline.question(`Hi ${name}. 
         You find yourself locked in a room. 
@@ -18,9 +18,9 @@ while (!gameOver) {
     if (answer === "1") {
         console.log("You escaped the room... by dying :( ");
     } else if (answer === "2") {
-        key = true;
+        key = true; //now user has the key
         console.log("You found the key but you haven't used it yet.");
-    } else if (answer === "3" && key === true) {
+    } else if (answer === "3" && key === true) { //this line needs to be read before the next else if statement
         console.log("CONGRADULATIONS!! You made a successful escape :) ");
         gameOver = true;
     } else if (answer === "3" ) {
