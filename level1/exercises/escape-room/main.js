@@ -1,6 +1,6 @@
 const readline = require("readline-sync");
 const name = readline.question("What is your name? ");
-let gameOver = false; //game runs while this condition is met.
+let gameOver = false; //game runs while the opposite of this condition is met.
 let key = false; //user does not have the key while this condition is met
 
 while (!gameOver) { //while lloop runs while condition is met
