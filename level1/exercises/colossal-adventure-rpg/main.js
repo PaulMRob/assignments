@@ -28,6 +28,10 @@ function startGame() {
     console.log(`Then you will win the day.` );
     console.log(`Your prize will be a magical kitten who never grows up and squeaks like a pika when you squeeze it hard enough.`)
     console.log(`But who am i kidding? You won't survive ten minutes out there in the MAZE ;))))))))))))))`);
+    console.log(`*POP* 
+    We have removed your eyes. Now you must walk the maze in darkness! :P`);
+    console.log("");
+
 };
 
 function Player() {
@@ -48,7 +52,7 @@ function attack(activeEnemy, isFighting) {
 
     if (activeEnemy.enemyHP <= 0) {
         console.log("Your enemy is Dead. You're a murderer :(");
-        activePlayer.hp += 5;
+        activePlayer.hp += 10;
         activePlayer.inventory.push(activeEnemy.booty);
         console.log("... but at least you can have their stuff now :)");
         isFighting = !isFighting
@@ -92,7 +96,7 @@ function enemyEncounter() {
 
         else if (fightOrRun === "r") {
             console.log("Running is not a cowardly act. But a futile one :P");
-            const chancesOfEscape = Math.random();
+            const chancesOfEscape = getRandomNum(1);
             if (chancesOfEscape <= 0.5) {
                 console.log("Looks like you managed to escape... for now ;)");
                 return
@@ -106,10 +110,7 @@ function enemyEncounter() {
     }
 }
 
-function walk() {
-    console.log(`*POP* 
-    We have removed your eyes. Now you must walk the maze in darkness! :P`);
-    
+function walk() {    
     let keyInOption = readline.keyIn('Why not take a walk? ("w" = walk) You may also "q" = quit, or "p" = view profile    ');
 
     if (keyInOption === 'p') {
@@ -128,23 +129,32 @@ function walk() {
             return enemyEncounter();
         }
         else if (evilChaos !== 2) {
-        let lore = getRandomNum(scrollLore.length);
+            const i = getRandomNum(scrollLore.length);
+            let lore = scrollLore[i];
             console.log(`There are many things you should know about the Black Scrolls...
-                        I've heard ${lore} 
-                        But why waste my breath on one such as you?
-                        Shall we continue walking?`);
+    I've heard ${lore} 
+        But why waste my breath on one such as you?
+            Shall we continue walking?`);
+               
             return walk();
         }
     }
 }
 
-function victory() {
-    //if activePlayer get's all five scrolls (i.e. defeats all 5 enemies) the they win the game!
-
+function victoryOrAnnihilation() {
+    if (activePlayer.inventory.includes("The Black Scroll of Havoc")) {
+        console.log("You have opened the Black Scroll of Havoc and plunged the world into unending Chaos. ALL IS LOST!!!!!!!!");
+        console.log("GAME OVER");
+        process.exit();
+    } else if (activePlayer.inventory.length === 4) {
+        console.log("You have acquired four of the five Black Scrolls without destroying the world. You win!");
+        process.exit();
+    }
 }
 startGame();
 while (isAlive) {
     walk();
+    victoryOrAnnihilation();
 }
 
 //you can make a victory function that has text saying you win and also runs a process.exit()
