@@ -1,0 +1,36 @@
+<html lang="en">
+<link rel="stylesheet" href="styles.css">
+
+<head>
+    <title>Travel FOrm</title>
+</head>
+
+<body>
+    <h1>Your Personalized Travel Form</h1>
+    <form name="myForm">
+        <input type="text" name="firstName" placeholder="First Name">
+        <input type="text" name="lastName" placeholder="Last Name">
+        <input type="number" name="age" placeholder="e.g. 40">
+        <input type="radio" name="pronouns" value="She/Her">She/Her
+        <input type="radio" name="pronouns" value="He/Him">He/Him
+        <input type="radio" name="pronouns" value="They/Them">They/Them
+        Where will you be traveling? 
+        <select name="city">
+            <option value="Hanksville">Hanksville</option>
+            <option value="Delta">Delta</option>
+            <option value="Escalante">Escalante</option>
+            <option value="Bluff">Bluff</option>
+            <option value="Toquerville">Toquerville</option>
+            <option value="Ogden">Ogden</option>
+        </select>
+        Meal services (Select all that apply):
+        Carnivore<input type="checkbox" value=" carnivore" name="diet">
+        Onminvore<input type="checkbox" value=" omnivore" name="diet">
+        Pescitarian<input type="checkbox" value=" herbivore" name="diet">
+        Vampire<input type="checkbox" value=" vampire" name="diet">
+        Psychic Vampire<input type="checkbox" value=" psychic-vampire" name="diet">
+        <button>Submit</button>
+    </form>
+    <script src="app.js"></script>
+</body>
+</html>
