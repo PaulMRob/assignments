@@ -1,0 +1,21 @@
+div {
+    padding: 40px;
+}
+
+#add {
+    background-color: yellow;
+    border: 1px solid black;
+    margin: 2px;
+}
+
+#subtract {
+    background-color: rgb(38, 127, 243);
+    border: 1px solid black;
+    margin: 2px;
+}
+
+#multiply {
+    background-color: rgb(233, 83, 83);
+    border: 1px solid black;
+    margin: 2px;
+}

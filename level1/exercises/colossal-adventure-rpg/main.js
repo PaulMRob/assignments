@@ -65,7 +65,7 @@ function attack(activeEnemy, isFighting) {
 
     if (activePlayer.hp > 0) {
         activePlayer.hp -= getRandomNum(20);
-        console.log(`You're a figther i guess. But you now have ${activePlayer.hp} health :/`);
+        console.log(`You're a fighter i guess. But you now have ${activePlayer.hp} health :/`);
     }
 
     if (activePlayer.hp <= 0) {
@@ -89,7 +89,7 @@ function enemyEncounter() {
         let fightOrRun = readline.keyIn(`will you fight or will you run? :} "r" = run, "f" = fight     `);
         if (fightOrRun === "f") {
             activeEnemy.enemyHP -= getRandomNum(10);
-            isFighting = attack(activeEnemy, isFighting);
+            isFighting = attack(activeEnemy, isFighting); //just call the attack function, dont need to set it to isFighting. 
             console.log("enemy hp: " + activeEnemy.enemyHP);
             console.log("player HP: " + activePlayer.hp);
         }
