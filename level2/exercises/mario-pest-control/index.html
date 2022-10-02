@@ -1,0 +1,61 @@
+<html lang="en">
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+<head>
+    <title>Mario Pest Control</title>
+</head>
+
+<body>
+    <h1>Mario Pest Control Form</h1>
+    
+        <ul id="pest-list">
+            <li id="goomba-quantity">
+                <h3>Goombas</h3>
+                <p>Price: $66</p>
+                <img src="images/th-1659121150.jpg">
+                <form name="goombas"> 
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" name="quantity">
+                    
+                </form>
+            </li>
+            <hr>
+            <li>
+                <h3>Bob-Ombs</h3>
+                <p>Price: $44</p>
+                <img src="images/th-738582842.jpg">
+                <form name="bobombs">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity">
+                    
+                </form>
+            </li>
+            <hr>
+            <li>
+                <h3>Cheep-Cheeps</h3>
+                <p>Price: $55</p>
+                <img src="images/th-2281444574.jpg">
+                <form name="cheeps">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity">
+                    
+                </form>
+            </li>
+            <hr>
+        </ul>
+
+        <form name="total">
+            <div class="container">
+                <div id="total"></div>
+            </div>
+            <button id="submit-button">Submit</button>
+              
+        </form>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
