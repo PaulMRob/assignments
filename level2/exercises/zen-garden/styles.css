@@ -1,0 +1,168 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-columns: 2fr 1fr;
+}
+
+.container>div {
+    border: solid black 2px;
+}
+
+.header {
+    /* grid-column: 1/4; */
+    height: 310px;
+    padding: 0 10%;
+    vertical-align: middle;
+    text-align: left;
+    background: #2d6360 0 url("imgs/huntington.jpg") no-repeat;
+    background-image: fixed, fixed, fixed, scroll;
+}
+
+
+
+.article1 {
+    grid-column: 1/3;
+    padding: 100px;
+}
+
+.authors {
+    background-color: lightcoral;
+    grid-column: 3/4;
+}
+
+.article2 {
+    grid-column: 1/3;
+}
+
+.links {
+    background-color: lightpink;
+    grid-column: 3/4;
+}
+
+.requirements {
+    grid-column: 1/3;
+}
+
+.blank {
+    grid-column: 3/4;
+}
+
+.footer {
+    background-color: aquamarine;
+    grid-column: 1/4;
+}
+
+@media (max-width: 1130px) {
+
+    /* use this media query to help these two cells drop to the bottom when screens are smaller */
+    .header{
+        width: 100%;
+        height: 230px;
+        padding: 0 10%;
+        border-top: solid 12px rgba(19, 67, 71, 0.8);
+        box-shadow: inset 0 0 100px rgb(255 255 255 / 30%);
+        vertical-align: middle;
+        text-align: left;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .authors {
+        grid-row: 8/9;
+        grid-column: 1/4;
+    }
+
+    .nav {
+        grid-row: 2/3;
+        grid-column: 1/4;
+    }
+
+    .links {
+        grid-row: 9/10;
+        grid-column: 1/4;
+    }
+
+    /* container could use some help so that it's children are full screen width */
+    .container {
+        width: 100%;
+    }
+}
+
+/* FLEX */
+/* use flexbox to make the icons behave like css zen garden's social icons */
+.icons {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+}
+
+.icons>div {
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+/* Here are the fonts */
+/* latin-ext */
+h1 {
+    font-family: 'Julius Sans One';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/juliussansone/v14/1Pt2g8TAX_SGgBGUi0tGOYEga5WOzHsX2aE.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+h2 {
+    font-family: 'Julius Sans One';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/juliussansone/v14/1Pt2g8TAX_SGgBGUi0tGOYEga5WOwnsX.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: italic;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/librebaskerville/v14/kmKhZrc3Hgbbcjq75U4uslyuy4kn0qNcWx8QDP2V.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: italic;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/librebaskerville/v14/kmKhZrc3Hgbbcjq75U4uslyuy4kn0qNcWxEQDA.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/librebaskerville/v14/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNXaxMICA.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/librebaskerville/v14/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNZaxM.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
