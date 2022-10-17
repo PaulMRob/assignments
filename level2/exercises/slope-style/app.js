@@ -69,10 +69,21 @@ console.log(product(1,2,3,4,5))
 
 // 2)
 let array = [6,7,8]
-let unshift = (a, b, c, d, e, array) => {
-    return [a, b, c, d, e, ...array]
-}
+let unshift = (a, b, c, d, e, array) => [a, b, c, d, e, ...array]
 
 console.log(unshift(...[1, 2, 3, 4, 5, array])) 
 
 // 3)
+let populatePeople = (names) => {
+    return names.map( (name) => {
+        name = name.split(" ");
+        let firstName = name[0]
+        let lastName = name[1]
+        return {
+            firstName: firstName,
+            lastName: lastName
+        }
+    })
+}
+
+console.log(populatePeople(["Frank Peterson", "Suzy Degual", "Liza Jones"]))
