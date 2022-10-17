@@ -74,15 +74,12 @@ let unshift = (a, b, c, d, e, array) => [a, b, c, d, e, ...array]
 console.log(unshift(...[1, 2, 3, 4, 5, array])) 
 
 // 3)
-let populatePeople = (names) => {
-    return names.map( (name) => {
+let populatePeople = (arr) => {
+    return arr.map( (name) => {
         name = name.split(" ");
-        let firstName = name[0]
-        let lastName = name[1]
-        return {
-            firstName: firstName,
-            lastName: lastName
-        }
+        firstName = name[0]
+        lastName = name[1]
+        return {firstName, lastName} 
     })
 }
 
