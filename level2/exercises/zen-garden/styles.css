@@ -24,15 +24,23 @@ html, body {
     text-align: left;
 }
 
+h1 {
+    color: #fff;
+}
 .header h2 {
     font-family: 'Libre Baskerville', sans-serif;
     font-style: italic;
+    color: #fff;
 }
 
 .nav {
     grid-column: 3/4;
     background: url(imgs/huntington.jpg);
     position: relative;
+    background-image: url(imgs/contours-opaque.png), url(imgs/noise.png), url(imgs/gridlines.png), url(imgs/huntington.jpg);
+    background-position: 0 0, 0 0, -5px -25px, 0 50%;
+    background-repeat: repeat, repeat, repeat, no-repeat;
+    background-size: auto, auto, auto, cover;
 }
 
 .button {
@@ -47,7 +55,8 @@ html, body {
 
 button{
     height: 70px;
-    width: 60%
+    width: 60%;
+    
 }
 
 .arrow {
@@ -61,20 +70,49 @@ button{
 }
 
 .authors {
-    background-color: lightcoral;
+    background: rgba(155, 190, 170, 0.5);
     grid-column: 3/4;
+}
+
+.authors ul {
+    list-style: none;
+    display: block;
+    margin-bottom: 0.25em;
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 1.2em;
+    font-style: normal;
+}
+
+li {
+    float: left;
+    width: 50%;
+    padding: 1.5em 10%;
+    border-top: solid 1px #d9e3dc;
+}
+
+.designer-name {
+    font-family: 'Libre Baskerville', sans-serif;;
+    font-style: italic;
+    color: #729b7e;
 }
 
 .article2 {
     grid-column: 1/3;
     padding: 100px;
-    background: rgba(138, 188, 159, 0.5); 
+    background: rgba(108, 155, 128, 0.5); 
     background-image: url("imgs/bamboo.png");
 }
 
 .links {
-    background-color: lightpink;
+    background: rgba(72, 112, 89, 0.5);
     grid-column: 3/4;
+}
+
+.links ul {
+    list-style: none;
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 1.2em;
+    font-style: normal;
 }
 
 .requirements {
@@ -84,6 +122,7 @@ button{
 
 .blank {
     grid-column: 3/4;
+    background-color: rgb(158 175 165 / 50%);
 }
 
 .footer {
