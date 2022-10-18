@@ -16,47 +16,43 @@ class Player {
         }    
     }
 
-    gotHit(status) {
+    gotHit() {
         if (this.hasStar === true) {
-            console.log("The Star Protected You!")
+            console.log("The Star Protected You! But it was destroyed in the process :(")
             this.hasStar = false
-        }
-        if (this.status === "Powered Up") {
+        } else if (this.status === "Powered Up") {
             this.status = "Big"
-        }
-        if (this.tatus === "Big") {
+        } else if (this.status === "Big") {
             this.status = "small"
-        }
-        if (this.status === "small") {
+        } else {
             this.status = "dead"
-            console.log("You Dead")
+            console.log("You were weak. Now you're dead.")
             process.exit()
         }
     }
 
-    gotPowerup(status) {
-        if (status === "small") {
-            status = "Big"
-        }
-        if (status === "Big") {
-            status = "Powered Up"
-        }
-        if (status === "Powered Up") {
+    gotPowerup() {
+        if (this.status === "Powered Up") {
             console.log("You found a star!")
-            hasStar = true
-        }
+            this.hasStar = true
+        } else if (this.status === "Big") {
+            this.status = "Powered Up"
+        } else {
+            this.status = "Big"
+        } 
     }
 
-    addCoin(totalCoins) {
+    addCoin() {
         this.totalCoins ++
     }
 
     print() {
-    console.log(`
+        console.log(`
         Name: ${this.name}
         Status: ${this.status}
         Total Coins: ${this.totalCoins}
         `)
+        if (this.hasStar) console.log("You currently have a star")
     }
 }
 
@@ -64,19 +60,19 @@ class Player {
 let randomRange = () => {
     let x = Math.floor(Math.random() * 3);
     
-    if (x === 0) {
+    if (x === 2) {
+        console.log("You were hit!")
         currentPlayer.gotHit()
-        console.log("gotHit")
+    }
+    
+    if (x === 0) {
+        console.log("Level Up!")
+        currentPlayer.gotPowerup()
     }
     
     if (x === 1) {
-        currentPlayer.gotPowerup()
-        console.log("gotPowerup")
-    }
-    
-    if (x === 2) {
+        console.log("You found a coin!")
         currentPlayer.addCoin()
-        console.log("addCoin")
     } 
     
     currentPlayer.print()
@@ -90,4 +86,4 @@ currentPlayer.setName(choosePlayer)
 
 setInterval(randomRange, 3000)
 
-setTimeout(() =>{process.exit()}, 15000)
+setTimeout(() =>{process.exit()}, 60000)
