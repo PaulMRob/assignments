@@ -1,0 +1,61 @@
+{
+    "apatizers": [
+        {
+            "name": "Bologna Rolls",
+            "ingredients": ["bologna", "mozzarella"],
+            "description": "mozzarella rolled in bologna. Disgusting!"
+        },
+        {
+            "name": "Sourdough & Olive Oil",
+            "ingredients": ["Plain White Sourdough", "Basil Olive Oil"],
+            "description": "dip the bread in the oil. You'll love it."
+        }
+    ],
+    "tacos": [
+        {
+            "name": "Chicken Tinga",
+            "ingredients": ["whole chicken", "tomatos", "Chipotle Peppers in adobo sauce"],
+            "description": "slow-cooked chicken with a flavor that knocks your socks off."
+        },
+        {
+            "name": "Carnitas",
+            "ingredients": ["Pork shoulder", "Oranges", "Thyme"],
+            "description": "slow-cooked pork in lard with a hint of citrus and thyme. You'll never eat another taco for as long as you live. but if you do, you'll hate yourself."
+        }
+    ],
+    "curry": [
+        {
+            "name": "Massaman Curry",
+            "ingredients": ["massaman curry", "peanut sauce", "chicken breast", "baby yukon potatos"],
+            "description": "served warm and simmering with basmati rice and popping-hot cherry tomatos filled with something akin to lava."
+        },
+        {
+            "name": "Kashmiri Potato Curry",
+            "ingredients": ["kashmiri spices", "baby yukon potatos", "Greek yogurt"],
+            "description": "slow-cooked spicy curry that will warm you all the way to your toes. served with seasonsed yogurt sauce and cilantro."
+        }
+    ],
+    "desserts": [
+        {
+            "name": "Tollhouse Cookies",
+            "ingredients": ["tollhouse cookie dough"],
+            "description": "It's the perfect cookie. Don't argue."
+        },
+        {
+            "name": "Icecream Sandwich",
+            "ingredients": ["vanilla icecream", "chocolate graham crackers"],
+            "description": "simple. delicious. I'll fight you. "
+        }
+    ],
+    "drinks": [
+        {
+            "name": "Old Rasputin",
+            "description": "the greatest beer ever brewed. If it's not your thing, more for me. "
+        },
+        {
+            "name": "Lime Pilsner",
+            "description": "light, fresh and delicious. perfect in pairs."
+        }
+    ]
+    
+}
