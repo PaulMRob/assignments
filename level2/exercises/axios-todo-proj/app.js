@@ -18,9 +18,12 @@ function listTodos(data){
         h3.textContent = `${data[i].title}`
         var deleteBtn = document.createElement("button")
         deleteBtn.textContent = "Delete"
+        var editBtn = document.createElement("button")
+        editBtn.textContent = "Edit"
         var newDiv = document.createElement("div")
         newDiv.appendChild(h3)
         newDiv.appendChild(deleteBtn)
+        newDiv.appendChild(editBtn)
         document.getElementById('todo-list').appendChild(newDiv)
         var singleTodoId = data[i]._id
         
@@ -29,6 +32,27 @@ function listTodos(data){
             axios.delete(`https://api.vschool.io/paulrobertson/todo/${singleTodoId}`)
                 .then(response => getData())
                 .catch(error => alert("There was a problem deleting your todo :P"))
+        })
+
+        // this handles a put / update / edit request
+        editBtn.addEventListener("click", (e) => {
+
+            const editInput = document.createElement('input');
+            editBtn.appendChild(editInput);
+            // editInput.value = div.textContent;
+
+            // const editSubmitBtn = document.createElement('button');
+            // li.append(editSubmitBtn);
+            // editSubmitBtn.textContent = 'Submit';
+
+            // editSubmitBtn.addEventListener("click", (e) => {
+            //     div.textContent = editInput.value;
+            //     editInput.remove();
+            //     editSubmitBtn.remove();
+
+            axios.put(`https://api.vschool.io/paulrobertson/todo/${singleTodoId}`)
+                .then(response => console.log("lets start editing"))
+                .catch(error => console.log(error))
         })
     }
 }
@@ -51,7 +75,7 @@ todoForm.addEventListener("submit", function(e) {
     }
 
 // clear the form after submit
-    todoForm.input.value = ""
+    todoForm.reset()
 
 // this handles a post request
     axios.post("https://api.vschool.io/paulrobertson/todo/", newTodo)
@@ -62,9 +86,4 @@ todoForm.addEventListener("submit", function(e) {
 
 
 
-//this handles a put/update/edit request
-// var editTodo = function (singleTodo) {
-//     axios.put("https://api.vschool.io/paulrobertson/todo/" + singleTodo._id)
-//         .then(response => console.log("lets start editing"))
-//         .catch(error => console.log(error))
-// }
+
