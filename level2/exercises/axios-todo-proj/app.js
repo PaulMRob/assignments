@@ -21,7 +21,6 @@ function listTodos(data){
     clearList()
 
     for( let i = 0; i < data.length; i++ ){
-        const singleTodoId = data[i]._id
         const newDiv = document.createElement("div")
         const checkBox = document.createElement("input")
         checkBox.type = "checkbox"
@@ -56,7 +55,7 @@ function listTodos(data){
         editBtn.addEventListener("click", (e) => {
             console.log(`editing ${data[i].title}`)
             // form for editing title
-            const editTitle = document.createElement('input');
+            const editTitle = document.createElement('input')
             newDiv.appendChild(editTitle);
             editTitle.value = `${data[i].title}`
             // form for editing price
@@ -67,42 +66,42 @@ function listTodos(data){
             const editImg = document.createElement('input')
             newDiv.appendChild(editImg)
             editImg.value = `${data[i].imgUrl}`
-            //submit button for edits
-            const editSubmitBtn = document.createElement('button');
+            //editSubmit button
+            const editSubmitBtn = document.createElement('button')
             newDiv.append(editSubmitBtn);
-            editSubmitBtn.textContent = 'Submit';
-            // updates
-            const updates = {
-                title: editTitle.value,
-                price: editPrice.value,
-                imgUrl: editImg.value
-            }
-            newDiv.appendChild(hr)
+            editSubmitBtn.textContent = 'Submit Edit';
 
-            editSubmitBtn.addEventListener("submit", function(e) {
-                e.preventDefault()
+            // submit edits to axios
+            editSubmitBtn.addEventListener("click", (e) => {
+                console.log(`pushed editSubmit button for ${data[i].title}`)
+            
+                // updates
+                const updates = {
+                    title: editTitle.value,
+                    price: editPrice.value,
+                    imgUrl: editImg.value
+                }
+                axios.put(`https://api.vschool.io/paulrobertson/todo/${data[i]._id}`, updates)
+                    .then(response => getData())
+                    .catch(error => console.log(error))
             })
 
-            axios.put(`https://api.vschool.io/paulrobertson/todo/${data[i]._id}`, updates)
-                .then(response => console.log(response))
-                .catch(error => console.log(error))
+            newDiv.appendChild(hr)
         })
 
         // this handles the check box
         checkBox.addEventListener("click", (e) => {
             if(checkBox.checked === false) {
                 h3.style.textDecoration = "none"
-                axios.put(`https://api.vschool.io/paulrobertson/todo/${data[i]._id}`, { "completed": true })
+                axios.put(`https://api.vschool.io/paulrobertson/todo/${data[i]._id}`, { "completed": false })
                     .then(response => console.log(response))
                     .catch(error => console.log(error))
             } else {
                 h3.style.textDecoration = "line-through"
-                axios.put(`https://api.vschool.io/paulrobertson/todo/${data[i]._id}`, { "completed": false })
+                axios.put(`https://api.vschool.io/paulrobertson/todo/${data[i]._id}`, { "completed": true })
                     .then(response => console.log(response))
                     .catch(error => console.log(error))
             }
-            
-
         })
     }
 }
@@ -121,7 +120,6 @@ todoForm.addEventListener("submit", function(e) {
         title: todoForm.title.value,
         price: todoForm.price.value,
         description: todoForm.description.value,
-        imgUrl: todoForm.imgUrl.value
     }
 
 // clear the form after submit
