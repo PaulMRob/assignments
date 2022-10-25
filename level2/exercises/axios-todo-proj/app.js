@@ -1,5 +1,4 @@
-// const { default: axios } = require("axios")
-
+// import axios from "axios"
 
 //get todos from database
 function getData(){
@@ -8,51 +7,102 @@ function getData(){
         .catch(error => console.log(error))
 }
     
+// clears DOM for new stuff
+function clearList(){
+    const el = document.getElementById("todo-list") 
+    while (el.firstChild) {
+        el.removeChild(el.firstChild)
+    }
+}    
+
 // Lists todo's to the DOM
 function listTodos(data){
 //first, clear what is already there so it's not posted twice
-    document.getElementById("todo-list").innerHTML = ""
+    clearList()
 
     for( let i = 0; i < data.length; i++ ){
-        var h3 = document.createElement("h3")
-        h3.textContent = `${data[i].title}`
-        var deleteBtn = document.createElement("button")
+        const singleTodoId = data[i]._id
+        const newDiv = document.createElement("div")
+        const checkBox = document.createElement("input")
+        checkBox.type = "checkbox"
+        const h3 = document.createElement("h3")
+        h3.textContent = `${data[i].title} $${data[i].price}`
+        const deleteBtn = document.createElement("button")
         deleteBtn.textContent = "Delete"
-        var editBtn = document.createElement("button")
+        const editBtn = document.createElement("button")
         editBtn.textContent = "Edit"
-        var newDiv = document.createElement("div")
+        const hr = document.createElement("hr")
+        newDiv.appendChild(checkBox)
+        if(data[i].completed === true) {
+            checkBox.checked = true
+            h3.style.textDecoration = "line-through"
+        }
         newDiv.appendChild(h3)
         newDiv.appendChild(deleteBtn)
         newDiv.appendChild(editBtn)
         document.getElementById('todo-list').appendChild(newDiv)
-        var singleTodoId = data[i]._id
+        newDiv.appendChild(hr)
+        
         
         // this handles a delete request
         deleteBtn.addEventListener("click", (e) => {
-            axios.delete(`https://api.vschool.io/paulrobertson/todo/${singleTodoId}`)
+            console.log(`deleted ${ data[i].title }`)
+            axios.delete(`https://api.vschool.io/paulrobertson/todo/${data[i]._id}`)
                 .then(response => getData())
                 .catch(error => alert("There was a problem deleting your todo :P"))
         })
 
         // this handles a put / update / edit request
         editBtn.addEventListener("click", (e) => {
+            console.log(`editing ${data[i].title}`)
+            // form for editing title
+            const editTitle = document.createElement('input');
+            newDiv.appendChild(editTitle);
+            editTitle.value = `${data[i].title}`
+            // form for editing price
+            const editPrice = document.createElement('input')
+            newDiv.appendChild(editPrice)
+            editPrice.value = `${data[i].price}`
+            // form for editing img
+            const editImg = document.createElement('input')
+            newDiv.appendChild(editImg)
+            editImg.value = `${data[i].imgUrl}`
+            //submit button for edits
+            const editSubmitBtn = document.createElement('button');
+            newDiv.append(editSubmitBtn);
+            editSubmitBtn.textContent = 'Submit';
+            // updates
+            const updates = {
+                title: editTitle.value,
+                price: editPrice.value,
+                imgUrl: editImg.value
+            }
+            newDiv.appendChild(hr)
 
-            const editInput = document.createElement('input');
-            editBtn.appendChild(editInput);
-            // editInput.value = div.textContent;
+            editSubmitBtn.addEventListener("submit", function(e) {
+                e.preventDefault()
+            })
 
-            // const editSubmitBtn = document.createElement('button');
-            // li.append(editSubmitBtn);
-            // editSubmitBtn.textContent = 'Submit';
-
-            // editSubmitBtn.addEventListener("click", (e) => {
-            //     div.textContent = editInput.value;
-            //     editInput.remove();
-            //     editSubmitBtn.remove();
-
-            axios.put(`https://api.vschool.io/paulrobertson/todo/${singleTodoId}`)
-                .then(response => console.log("lets start editing"))
+            axios.put(`https://api.vschool.io/paulrobertson/todo/${data[i]._id}`, updates)
+                .then(response => console.log(response))
                 .catch(error => console.log(error))
+        })
+
+        // this handles the check box
+        checkBox.addEventListener("click", (e) => {
+            if(checkBox.checked === false) {
+                h3.style.textDecoration = "none"
+                axios.put(`https://api.vschool.io/paulrobertson/todo/${data[i]._id}`, { "completed": true })
+                    .then(response => console.log(response))
+                    .catch(error => console.log(error))
+            } else {
+                h3.style.textDecoration = "line-through"
+                axios.put(`https://api.vschool.io/paulrobertson/todo/${data[i]._id}`, { "completed": false })
+                    .then(response => console.log(response))
+                    .catch(error => console.log(error))
+            }
+            
+
         })
     }
 }
@@ -81,7 +131,6 @@ todoForm.addEventListener("submit", function(e) {
     axios.post("https://api.vschool.io/paulrobertson/todo/", newTodo)
         .then(response => getData())
         .catch(error => console.log(error))
-    
 })
 
 
