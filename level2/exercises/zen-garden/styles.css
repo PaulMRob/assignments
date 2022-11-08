@@ -10,6 +10,7 @@ html, body {
 }
 
 .header {
+    grid-row: 1/2;
     grid-column: 1/3;
     height: 310px;
     padding: 0 10%;
@@ -22,11 +23,18 @@ html, body {
     background-size: auto, auto, auto, cover;
     vertical-align: middle;
     text-align: left;
+    color: #FFFFFF;
 }
 
 h1 {
     color: #fff;
 }
+
+a {
+    text-decoration: none;
+    color: #c0cac3;
+}
+
 .header h2 {
     font-family: 'Libre Baskerville', sans-serif;
     font-style: italic;
@@ -41,11 +49,13 @@ h1 {
     background-position: 0 0, 0 0, -5px -25px, 0 50%;
     background-repeat: repeat, repeat, repeat, no-repeat;
     background-size: auto, auto, auto, cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.button {
+.nav button {
     vertical-align: middle;
-    position: absolute;
     top: 40%;
     left:15%;
     opacity: 0.4;
@@ -53,7 +63,7 @@ h1 {
     flex-wrap: nowrap;
 }
 
-button{
+button {
     height: 70px;
     width: 60%;
     
@@ -72,12 +82,14 @@ button{
 .authors {
     background: rgba(155, 190, 170, 0.5);
     grid-column: 3/4;
+    
 }
 
 .authors ul {
+    width: 100%;
     list-style: none;
     display: block;
-    margin-bottom: 0.25em;
+    
     font-family: 'Julius Sans One', sans-serif;
     font-size: 1.2em;
     font-style: normal;
@@ -125,60 +137,131 @@ li {
     background-color: rgb(158 175 165 / 50%);
 }
 
-.footer {
-    background-color: aquamarine;
+.credits {
+    grid-row: 5/6;
     grid-column: 1/4;
-    font-family: 'Julius Sans One';
+    max-height: 320;
+    background-attachment: fixed, fixed, fixed, scroll;
+    background-image: url(imgs/contours-opaque.png), url(imgs/noise.png), url(imgs/gridlines.png), url(imgs/koi.jpg);
+    background-position: 0 0, 0 0, -5px -25px, 0 50%;
+    background-repeat: repeat, repeat, repeat, no-repeat;
+    background-size: auto, auto, auto, cover;
+    vertical-align: middle;
+    color:#fffFFF66;
+    font-size: 32px;
+    text-align: center;
+    padding: 45px 115px;
 }
 
-.footer h3 {
-    font-family: 'Libre Baskerville', sans-serif;
-    font-style: italic;
+.credits a {
+    color: #fffFFFb3;
+    text-decoration: none;
+    
+}
+
+.footer {
+    grid-column: 1/4;
+    height: 176px;
+    background-color: #134347;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 122px;
+}
+
+a.designer-name {
+    color: #607476;
 }
 
 @media (max-width: 1130px) {
 
     /* use this media query to help these two cells drop to the bottom when screens are smaller */
     .header{
+        grid-row: 1/2;
         grid-column: 1/4;
         height: 230px;
         padding: 0 10%;
+        background-attachment: fixed, fixed, fixed, scroll;
         border-top: solid 12px rgba(19, 67, 71, 0.8);
         box-shadow: inset 0 0 100px rgb(255 255 255 / 30%);
+        background-image: url(imgs/contours-opaque.png), url(imgs/noise.png), url(imgs/gridlines.png), url(imgs/huntington.jpg);
+        background-position: 0 0, 0 0, -5px -25px, 0 50%;
+        background-repeat: repeat, repeat, repeat, no-repeat;
+        background-size: auto, auto, auto, cover;
         vertical-align: middle;
-        text-align: center;
+        text-align: left;
+        color: #FFFFFF;
     }
 
     .nav {
+        grid-row: 1/2;
+        grid-column: 1/4;
+        max-height: 242px;
+        background: bottom;
+        background-color:rgba(72, 112, 89, 0.5);
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .article1 {
         grid-row: 2/3;
         grid-column: 1/4;
     }
 
-    .authors {
-        grid-row: 9/10;
+    .article2 {
+        grid-row: 3/4;
         grid-column: 1/4;
+    }
+
+    .requirements {
+        grid-row: 4/5;
+        grid-column: 1/4;
+    }
+
+    .authors {
+        grid-row: 7/8;
+        grid-column: 1/4;
+        padding: 1.5em 10%;
+        border-top: solid 1px #d9e3dc;
+    }
+
+    .authors ul {
+       display: grid;
+       grid-template-columns: 1fr 1fr;
     }
 
     .links {
         grid-row: 8/9;
         grid-column: 1/4;
+        padding: 1.5em 10%;
+        border-top: solid 1px #d9e3dc;
+    }
+
+    .links ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .credits {
+        grid-row: 5/6;
+        grid-column: 1/4;
+        max-height: 180;
+        font-size: 22.4px;
+    }
+
+    .footer {
+        grid-row: 6/7;
+        grid-column: 1/4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 122px;
     }
 
     .blank {
         visibility: hidden;
     }
 
-    .article1 {
-        grid-column: 1/4;
-    }
-
-    .article2 {
-        grid-column: 1/4;
-    }
-
-    .requirements {
-        grid-column: 1/4;
-    }
     /* container could use some help so that it's children are full screen width */
     .container {
         width: 100%;
@@ -225,7 +308,6 @@ p {
     font-size: 0.8em;
     margin: 0.75em 0;
     line-height: 2;
-    
 }
 
 /* latin-ext */

@@ -32,7 +32,7 @@ function listTodos(data){
         editBtn.textContent = "Edit"
         const hr = document.createElement("hr")
         newDiv.appendChild(checkBox)
-        if(data[i].completed === true) {
+        if(data[i].completed) {
             checkBox.checked = true
             h3.style.textDecoration = "line-through"
         }
@@ -91,7 +91,7 @@ function listTodos(data){
 
         // this handles the check box
         checkBox.addEventListener("click", (e) => {
-            if(checkBox.checked === false) {
+            if(!checkBox.checked) {
                 h3.style.textDecoration = "none"
                 axios.put(`https://api.vschool.io/paulrobertson/todo/${data[i]._id}`, { "completed": false })
                     .then(response => console.log(response))

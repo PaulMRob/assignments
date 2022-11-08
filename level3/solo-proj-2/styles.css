@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Inter', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    height: 55px;
+    width: 100%;
+    background-color: #F55A5A;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.navbar-text {
+    font-size: 15px;
+}
+
+.travel-img {
+    margin-right: 5px;
+}
+
+.card {
+    display: flex;
+    margin: 40px;
+    width: 470px
+}
+
+.card-image {
+    max-width: 125px;
+    height: 168px;
+    border-radius: 5px;
+}
+
+.card-info {
+    margin: 5px 20px 0 20px;
+}
+
+span {
+    font-size: 12.4px;
+}
+
+a {
+    font-size: 11px;
+    color: #918E9B;
+}
+
+h2 {
+    margin-top: 5px;
+}
+
+h4 {
+    font-size: 11px;
+}
+
+p {
+    font-size: 11px;
+}
