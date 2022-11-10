@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.header {
+    background-image: url("./src/images/home-bg.jpg");
+    background-color: rgba(73, 80, 87, 1);
+    background-size: cover;
+    height: 530px;
+    width: 100%;
+    box-shadow: inset 0 0 0 2000px rgba(73, 80, 87, .6);
+    text-align: center;
+    background-position: center;
+    color: #FFFFFF;
+}
+
+header > h1 {
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 800;
+    font-size: 80px;
+    position: relative;
+    margin-top: 130px;
+    margin-bottom: 0;
+}
+
+header > h2 {
+    font-size: 24px;
+    font-weight: 100;
+    margin: 10px 0 0;
+}
+
+.navbar {
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+    color: #FFFFFF;
+    padding: 8px 0;
+    margin-left: 170px;
+    margin-right: 170px;
+}
+
+.start-bootstrap {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.nav-menu {
+    display: flex;
+}
+
+.nav-menu > h4 {
+    padding: 24px 16px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.blog-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 40px auto;
+    width: 589px;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: 300;
+}
+
+p {
+    margin-top: 0;
+    font-style: italic;
+    opacity: 0.8;
+    font-family: Lora;
+    font-size: 18px;
+}
+
+
+hr {
+    margin: 34px 0;
+    opacity: 0.4;
+}
+
+.btn {
+    padding: 16px 28px;
+    background-color: #0085A1;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.0625em;
+    text-transform: uppercase;
+    text-align: right;
+    margin-left: 400px;
+}
+
+.footer {
+    text-align: center;
+    padding: 48px 0;
+}
+
+.footer-icons {
+    font-size: 50px;
+}
