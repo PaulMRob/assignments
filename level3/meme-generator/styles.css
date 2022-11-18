@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Karla', sans-serif;
+}
+
+.header {
+  background-image: linear-gradient(to right, #672280, #A626D3);
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+  padding-left: 50px;
+  font-size: 20.75px;
+  letter-spacing: -3px;
+}
+
+.header > p {
+  position: absolute;
+  right: 50px;
+  font-size: 12px;
+  letter-spacing: normal;
+}
+
+.header > img {
+  max-width: 50px;
+}
