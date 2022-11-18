@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: rgb(226, 147, 43);
+}
+
+.name-age {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pets {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.pet {
+  display: flex;
+  align-items: center;
+  margin: 0 20px 0;
+}
+
+.pet-breed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+hr {
+  margin: 0 80px ;
+}
+
+.vl {
+  margin: 0 8px;
+}
+
+h2, p {
+  font-weight: 100;
+}
+
