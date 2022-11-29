@@ -1,0 +1,11 @@
+.App {
+    display: grid;
+    grid-template-columns: auto auto;
+    
+}
+
+.single-square {
+    height: 300px;
+    border: 4px solid black;
+    margin: 10px;
+}
