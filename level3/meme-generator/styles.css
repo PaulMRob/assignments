@@ -24,3 +24,38 @@ body {
 .header > img {
   max-width: 50px;
 }
+
+.form {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+input {
+  font-family: "Karla", sans-serif;
+  width: 40%;
+  height: 35px;
+  margin: 0 16px;
+  border-radius: 5px;
+  border: 1px solid #D5D4D8;
+  text-indent: 5px;
+}
+
+button {
+  font-family: "Karla", sans-serif;
+  width: 86.5%;
+  height: 40px;
+  background-image: linear-gradient(to right, #672280, #A626D3);
+  margin: 20px;
+  border-radius: 5px;
+  border: none;
+  color: #FFFFFF;
+  font-style: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.meme--image {
+  max-width: 100%;
+}

@@ -1,0 +1,47 @@
+1)
+const [color, setColor] = React.useState("pink")
+    setColor("yellow")
+
+2) 
+const [color, setColor] = useState("pink")
+
+setColor(prevState => prevState === "pink" ? "blue" : "pink")
+
+3)
+const [people, setPeople] = useState([
+        {
+            firstName: "John",
+            lastName: "Smith"
+        }
+    ])
+
+    setPeople(prevState => {
+        return [
+            ...prevState,
+            {
+                firstName: "Paul",
+                lastName: "Robertson"
+            }
+        ]
+    })
+
+4)
+    a)  setColors(prevColors => {
+            return [...prevColors, "green"]
+        }
+    b)  const [countObject, setCountObject] = React.setState({count:0})
+            setCountObject(prevState => ({count: prevState.count + 1}))
+
+5) 
+const [person, setPersons] = React.useState({
+    firstName: "john",
+    lastName: "smith"
+})
+
+setPerson(prevState => ({
+    ...prevState,
+    age: 30
+}))
+
+6)
+It overwrites and therefore destroys the entire array and leaves you with nothing but "green"
