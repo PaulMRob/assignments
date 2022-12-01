@@ -1,7 +1,7 @@
 import React from "react"
 import Dice from "./Dice"
 
-export default function DiceBox(props) {
+export default function DiceBox() {
     const [diceArray, setDiceArray] = React.useState([1,2,3,4,5])
 
     function rolltheDice() {
