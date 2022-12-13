@@ -3,15 +3,7 @@ import Badge from "./components/Badge"
 
 function App() {
   
-  const initialBadgeData = {
-    // firstName: "",
-    // lastName: "",
-    // email: "",
-    // phone: "",
-    // birthPlace: "",
-    // favoriteFood: "",
-    // about: ""
-  }
+  const initialBadgeData = {}
 
   const [bool, setBool] = useState(false)
 
