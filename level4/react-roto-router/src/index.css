@@ -1,0 +1,116 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+nav {
+  padding-left: 5em;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  /* justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: column; */
+  background: linear-gradient(90deg, rgb(245, 74, 179), rgba(84, 125, 236, 0.534)),
+              url('./components/precog.jpg') no-repeat right;
+  height: 8em;
+  font-size: x-large;
+  width: 94%;
+}
+
+.nav-elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.nav-title {
+  grid-column: 2/7;
+  letter-spacing: 0.1em;
+  color: rgba(240, 248, 255, 0.733);
+  margin: 0;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: linear-gradient(180deg, rgb(245, 74, 179), rgba(84, 125, 236, 0.534));
+  width: 100%;
+  padding: 1em;
+  text-align: center;
+  bottom: 0;
+}
+
+footer h4 {
+  grid-column: span 3;
+}
+
+.sm-icon {
+  margin: auto;
+}
+
+a {
+  font-weight: 600;
+  color: #6467f5;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #0c0c0c;
+}
+
+body {
+  text-align: center;
+  margin: 0;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  margin: 20px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #ec88ec;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  max-width: fit-content;
+}
+button:hover {
+  border-color: #646cff;
+  background-color: #a4a7e7;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3em;
+}
+
+img {
+  max-width: 300px;
+}
+
+.plumber-bio {
+  margin: 10em;
+}
