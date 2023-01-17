@@ -1,13 +1,11 @@
 import React from 'react'
 
-export default function ArtCard() {
-
-
+export default function ArtCard({props}) {
 
     return (
         <div className='card-container'>
             <img 
-                src=""
+                src={props.image}
                 className='art-image' 
             />
             <title>This is the title</title>

@@ -11,46 +11,46 @@ export default function Home() {
         author: "",
         credit: "",
         categories: [],
-        img_id: ""
+        img_id: "",
+        config: ""
     })
-    
-    // Get Piece Info from API
+
+    // Get Info from API
     useEffect(() => {
-        axios.get("https://api.artic.edu/api/v1/artworks/129884?fields=id,title,image_id,artist_title,category_titles,credit_line")
+        const img_spec = "/full/843,/0/default.jpg"
+        axios.get("https://api.artic.edu/api/v1/artworks/129884?fields=id,title,image_id,artist_title,category_titles,credit_line,config")
             .then(res => {
-                setArtCard(prevArtCard => ({ 
-                    ...prevArtCard,
-                    author: res.data.data.artist_title,
-                    credit: res.data.data.credit_line,
-                    categories: res.data.data.category_titles,
-                    img_id: res.data.data.image_id
-                }))
-            })
-        axios.get(`https://www.artic.edu/iiif/2/${artCard.img_id}/full/843,/0/default.jpg`) 
-            .then(res => {
-                setArtCard(prevArtCard => ({
-                    ...prevArtCard,
-                    image: res
-                }))
+
+                setArtCard(prevArtCard => {
+                    return {
+                        ...prevArtCard,
+                        image: `${res.data.config.iiif_url}/${res.data.data.image_id}${img_spec}`,
+                        author: res.data.data.artist_title,
+                        credit: res.data.data.credit_line,
+                        categories: res.data.data.category_titles,
+                        img_id: res.data.data.image_id,
+                        config: res.data.config.iiif_url
+                    }
+                })
+                console.log("art card", artCard)
+
+                console.log("config", artCard.config)
+                console.log("img_id", artCard.img_id)
             })
     }, [])
-    // Get Image from IIIF API
-    
 
-    // const displayPiece = pieceList.map(info => (
-    //     <ArtCard />
-    // )) 
-    console.log(artCard)
-    return(
+
+    return (
         <div>
             <h1>Welcome to the Art Institute of Chicago!</h1>
-            <input 
-                type="text" 
+            <input
+                type="text"
                 name="search-input"
-                placeholder='Search' 
+                placeholder='Search'
             />
             <button>Search</button>
-            <ArtCard />
+            {/* <img src={artCard.image} alt="" /> */}
+            <ArtCard props={artCard} />
         </div>
     )
 }
