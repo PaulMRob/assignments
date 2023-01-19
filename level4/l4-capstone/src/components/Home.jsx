@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import ArtCard from './ArtCard'
 
+
 export default function Home() {
+
+    const navigate = useNavigate()
 
     const [pieceImage, setPieceImage] = useState()
 
     const [artCard, setArtCard] = useState({
         image: "",
+        title: "",
         author: "",
         credit: "",
         categories: [],
@@ -17,14 +22,15 @@ export default function Home() {
 
     // Get Info from API
     useEffect(() => {
-        const img_spec = "/full/843,/0/default.jpg"
+        const imgSpec = "/full/843,/0/default.jpg"
         axios.get("https://api.artic.edu/api/v1/artworks/129884?fields=id,title,image_id,artist_title,category_titles,credit_line,config")
             .then(res => {
-
+            
                 setArtCard(prevArtCard => {
                     return {
                         ...prevArtCard,
-                        image: `${res.data.config.iiif_url}/${res.data.data.image_id}${img_spec}`,
+                        image: `${res.data.config.iiif_url}/${res.data.data.image_id}${imgSpec}`,
+                        title: res.data.data.title,
                         author: res.data.data.artist_title,
                         credit: res.data.data.credit_line,
                         categories: res.data.data.category_titles,
@@ -32,10 +38,6 @@ export default function Home() {
                         config: res.data.config.iiif_url
                     }
                 })
-                console.log("art card", artCard)
-
-                console.log("config", artCard.config)
-                console.log("img_id", artCard.img_id)
             })
     }, [])
 
@@ -49,8 +51,9 @@ export default function Home() {
                 placeholder='Search'
             />
             <button>Search</button>
-            {/* <img src={artCard.image} alt="" /> */}
             <ArtCard props={artCard} />
+            <button>Next Piece</button>
+            <button onClick={() => navigate("/catalogue")}>Catalogue</button>
         </div>
     )
 }
