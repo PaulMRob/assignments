@@ -1,39 +1,29 @@
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import useArtWorksData from "../hooks/useArtWorksData";
+import ArtCard from "./ArtCard";
 
 export default function Catalogue() {
-    const navigate = useNavigate()
-    
-    const [artWorks, setArtWorks] = useState([])
+  const [page, setPage] = React.useState(1);
+  const { art, artworkUrl, imgSpec } = useArtWorksData(12, page);
+  const navigate = useNavigate();
 
-    const imgUrl = "https://www.artic.edu/iiif/2"
-    const imgSpec = "/full/843,/0/default.jpg"
+  return (
+    <div>
+      <h1>Catalogue Page</h1>
 
-    //API call to populate artWorks array
-    useEffect(() => {
-        axios.get("https://api.artic.edu/api/v1/artworks?limit=12")
-            .then(res => {
-                setArtWorks(res)
-                artWorks.map((i) => {
-                    return <div>
-                        <img src={`${imgUrl}/${data.data.data[i].image_id}/${imgSpec}`} />
-                    </div>
-                })
-            })
-    }, [])
-   
-    
-    console.log(artWorks)
+      {art.map((item) => (
+        <ArtCard
+          key={item.image_id}
+          imgUrl={`${artworkUrl}/${item.image_id}/${imgSpec}`}
+          title={item.title}
+          author={item.artist_title}
+        />
+      ))}
 
-    return (
-        <div>
-            <h1>Catalogue Page</h1>
-           
-            <button onClick={() => navigate("/")}>Home</button>
-            
-            <button>Next Page</button>
-        </div>
-    )
+      <button onClick={() => navigate("/")}>Home</button>
+
+      <button onClick={() => setPage((p) => p + 1)}>Next Page</button>
+    </div>
+  );
 }

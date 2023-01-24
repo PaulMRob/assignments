@@ -1,59 +1,37 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import ArtCard from './ArtCard'
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import ArtCard from "./ArtCard";
+import useArtWorksData from "../hooks/useArtWorksData";
+import LoadingOverlay from "./LoadingOverlay";
 
 export default function Home() {
+  const [page, setPage] = React.useState(1);
+  const { art, artworkUrl, imgSpec, loading } = useArtWorksData(1, page);
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  return (
+    <div>
+      <div style={{ height: "900px" }}>
+        {art[0] && (
+          <ArtCard
+            key={art[0].image_id}
+            imgUrl={`${artworkUrl}/${art[0].image_id}/${imgSpec}`}
+            title={art[0].title}
+            author={art[0].artist_title}
+            imageProps={{ style: { height: "600px" } }}
+          />
+        )}
+        {loading && <LoadingOverlay loading={loading} />}
+      </div>
 
-    const [pieceImage, setPieceImage] = useState()
-
-    const [artCard, setArtCard] = useState({
-        image: "",
-        title: "",
-        author: "",
-        credit: "",
-        categories: [],
-        img_id: "",
-        config: ""
-    })
-
-    // Get Info from API
-    useEffect(() => {
-        const imgSpec = "/full/843,/0/default.jpg"
-        axios.get("https://api.artic.edu/api/v1/artworks/129884?fields=id,title,image_id,artist_title,category_titles,credit_line,config")
-            .then(res => {
-            
-                setArtCard(prevArtCard => {
-                    return {
-                        ...prevArtCard,
-                        image: `${res.data.config.iiif_url}/${res.data.data.image_id}${imgSpec}`,
-                        title: res.data.data.title,
-                        author: res.data.data.artist_title,
-                        credit: res.data.data.credit_line,
-                        categories: res.data.data.category_titles,
-                        img_id: res.data.data.image_id,
-                        config: res.data.config.iiif_url
-                    }
-                })
-            })
-    }, [])
-
-
-    return (
-        <div>
-            <h1>Welcome to the Art Institute of Chicago!</h1>
-            <input
-                type="text"
-                name="search-input"
-                placeholder='Search'
-            />
-            <button>Search</button>
-            <ArtCard props={artCard} />
-            <button>Next Piece</button>
-            <button onClick={() => navigate("/catalogue")}>Catalogue</button>
-        </div>
-    )
+      <button
+        onClick={() => setPage((p) => (p - 1 > 1 ? p - 1 : 1))}
+        disabled={page <= 1}
+      >
+        Previous Piece
+      </button>
+      <button onClick={() => setPage((p) => p + 1)}>Next Piece</button>
+      <button onClick={() => navigate("/catalogue")}>Catalogue</button>
+    </div>
+  );
 }
