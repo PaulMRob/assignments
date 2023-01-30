@@ -12,7 +12,8 @@ const movies = [
 ];
 
 // Routes
-// get all
+
+  // get all
 movieRouter
   .route("/")
   .get((req, res) => {
@@ -25,18 +26,42 @@ movieRouter
     res.send(`${newMovie.title} was added to database!`);
   });
 
-// get one
+  // get one
 movieRouter.get("/:movieId", (req, res) => {
   const movieId = req.params.movieId;
   const foundMovie = movies.find((movie) => movie._id === movieId);
   res.send(foundMovie);
 });
 
-// get by genre
+  // get by genre
 movieRouter.get("/search/genre", (req, res) => {
   const genre = req.query.genre;
   const filteredMovies = movies.filter((movie) => movie.genre === genre);
-  res.send(filteredMovies)
+  res.send(filteredMovies);
+});
+
+  // post one
+movieRouter.post("/", (req, res) => {
+  const newMovie = req.body;
+  newMovie._id = uuidv4();
+  movies.push(newMovie);
+  res.send(`${newMovie.title} was added to the database.`);
+});
+
+  // delete one
+movieRouter.delete("/:movieId", (req, res) => {
+  const movieId = req.params.movieId;
+  const movieIndex = movies.findIndex((movie) => movie._id === movieId);
+  movies.splice(movieIndex, 1);
+  res.send(`successfully deleted ${move.title}`);
+});
+
+  // update or put
+movieRouter.put("/:movieId", (req, res) => {
+  const movieId = req.params.movieId;
+  const movieIndex = movies.findIndex((movie) => movie._id === movieId);
+  const updatedMovie = Object.assign(movies[movieIndex], req.body);
+  res.send(updatedMovie);
 });
 
 module.exports = movieRouter;

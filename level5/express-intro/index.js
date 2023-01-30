@@ -7,6 +7,21 @@ app.use("/", express.json()); //looks for a request body and turns it into js an
 //Routes
 app.use("/movies", require("./routes/movieRouter"));
 app.use("/tvshows", require("./routes/tvShowRouter.js"));
+app.use("/items", (req, res, next) => {
+  console.log("the items middleware was executed");
+  next();
+});
+
+app.use("/items", (req, res, next) => {
+  req.body =  {name: "rick"}
+  next() 
+})
+
+app.get("/items", (req, res, next) => {
+  console.log("get request recieved")
+  res.send(req.body)
+})
+
 
 // server listening
 app.listen(9000, () => {
