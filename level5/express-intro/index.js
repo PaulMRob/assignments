@@ -5,8 +5,8 @@ const app = express();
 app.use("/", express.json()); //looks for a request body and turns it into js and puts it in 'req.body' (which is the object the user sent in post request)
 
 //Routes
-app.use('/movies', (require("./movieRouter")))
-app.use('/tvshows', (require("./routes/tvShowRouter.js")))
+app.use("/movies", require("./routes/movieRouter"));
+app.use("/tvshows", require("./routes/tvShowRouter.js"));
 
 // server listening
 app.listen(9000, () => {

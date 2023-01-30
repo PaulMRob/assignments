@@ -2,7 +2,6 @@ const express = require("express");
 const tvShowRouter = express.Router();
 const { v4: uuidv4 } = require("uuid");
 
-
 //fake data
 const tvShows = [
   { title: "hannibal", genre: "horror", _id: uuidv4() },
@@ -24,4 +23,11 @@ tvShowRouter
     tvShows.push(newShow);
     res.send(`${newShow.title} was added to database!`);
   });
-module.exports = tvShowRouter
+
+tvShowRouter.get("/:tvShowId", (req, res) => {
+  const tvShowId = req.params.tvShowId;
+  foundTvShow = tvShows.find((show) => show._id === tvShowId);
+  res.send(foundTvShow);
+});
+
+module.exports = tvShowRouter;
