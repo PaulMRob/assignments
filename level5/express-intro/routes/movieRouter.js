@@ -45,7 +45,7 @@ movieRouter.post("/", (req, res) => {
   const newMovie = req.body;
   newMovie._id = uuidv4();
   movies.push(newMovie);
-  res.send(`${newMovie.title} was added to the database.`);
+  res.send(newMovie);
 });
 
   // delete one

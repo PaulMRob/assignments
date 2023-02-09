@@ -8,3 +8,7 @@
     
     # the "next" fucntion
         dictates the next middleware to run on the server
+
+# Connection Front-end to Back-End
+
+    1) Folder Structure

@@ -53,9 +53,7 @@ bountiesRouter.post("/", (req, res) => {
   const newBounty = req.body;
   newBounty._id = uuidv4();
   bounties.push(newBounty);
-  res.send(
-    `${newBounty.firstName} ${newBounty.lastName} was successfully added to database!`
-  );
+  res.send(newBounty);
 });
 
 bountiesRouter.delete("/:bountyId", (req, res) => {
