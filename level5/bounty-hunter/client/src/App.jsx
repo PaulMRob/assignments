@@ -3,7 +3,6 @@ import axios from "axios";
 import Bounty from "./components/Bounty";
 import AddBountyForm from "./components/AddBountyForm";
 
-
 export default function App() {
   const [bounties, setBounties] = useState([]);
 
@@ -38,7 +37,11 @@ export default function App() {
     axios
       .put(`/bounties/${bountyId}`, updates)
       .then((res) => {
-        setBounties(prevBounties => prevBounties.map(bounty => bounty._id !== bountyId ? bounty : res.data))
+        setBounties((prevBounties) =>
+          prevBounties.map((bounty) =>
+            bounty._id !== bountyId ? bounty : res.data
+          )
+        );
       })
       .catch((err) => console.log(err));
   }
