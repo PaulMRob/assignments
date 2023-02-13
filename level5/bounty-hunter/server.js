@@ -9,7 +9,10 @@ app.use(morgan("dev"));
 
 //Connect to DB //
 
-mongoose.connect('mongodb://localhost:27017/bountiesdb', () => console.log("Connected to Database!"))
+mongoose.connect(
+  "mongodb+srv://PaulMRobertson:zu2UtcX6-!!zkP*@atlascluster.rqa8vdj.mongodb.net/?retryWrites=true&w=majority",
+  () => console.log("Connected to Database!")
+);
 
 // Routes //
 app.use("/bounties", require("./routes/bountiesRouter"));

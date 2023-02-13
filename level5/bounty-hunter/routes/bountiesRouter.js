@@ -13,13 +13,15 @@ bountiesRouter.get("/", (req, res, next) => {
 });
 
 bountiesRouter.get("/:bountyId", (req, res, next) => {
-  const bountyId = req.params.bountyId;
-  const foundBounty = bounties.find((bounty) => bounty._id === bountyId);
-  if (!foundBounty) {
-    const error = new Error(`The Item with id ${bountyId} was not found.`);
-    return next(error);
-  }
-  res.status(200).send(foundBounty);
+  const {bounty} = req.query
+  const pattern = new RegExp(firstName)
+  Bounty.find({firstName: {$regex: pattern, $options: 'i'}}, (err, bounties) => {
+    if(err) {
+      res.status(500)
+      return next(err)
+    }
+    return res.status(200).send(bounties)
+  })
 });
 
 bountiesRouter.post("/", (req, res, next) => {
