@@ -45,7 +45,7 @@ bountiesRouter.delete("/:bountyId", (req, res, next) => {
       .status(200)
       .send(`Successfully deleted item ${deletedItem.fistName} from database!`);
   });
-});
+}); 
 
 bountiesRouter.put("/:bountyId", (req, res, next) => {
   Bounty.findOneAndUpdate(
