@@ -12,4 +12,4 @@ const Issue = require("../models/polipost")
 
 //Update Post
 
-module.exports = PolipostRouter
+module.exports = polipostRouter
