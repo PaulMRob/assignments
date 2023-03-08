@@ -19,4 +19,4 @@ const polipostSchema = new Schema({
   },
 });
 
-mondule.exports = mongoose.model("Polipost", polipostSchema);
+module.exports = mongoose.model("Polipost", polipostSchema);
