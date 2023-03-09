@@ -1,6 +1,6 @@
-const express= require("express")
-const issueRouter = express.Router()
-const Issue = require("../models/polipost")
+const express = require("express");
+const issueRouter = express.Router();
+const Issue = require("./models/polipost");
 
 //Get All Posts
 
@@ -12,4 +12,4 @@ const Issue = require("../models/polipost")
 
 //Update Post
 
-module.exports = polipostRouter
+module.exports = polipostRouter;
