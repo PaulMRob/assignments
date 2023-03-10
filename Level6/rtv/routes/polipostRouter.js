@@ -1,7 +1,6 @@
 const express = require("express");
-const polipost = require("./models/polipost");
 const polipostRouter = express.Router();
-const Polipost = require("./models/polipost");
+const Polipost = require("./models/Polipost");
 
 //Get All Posts
 polipostRouter.get("/", async (req, res, next) => {
@@ -59,7 +58,7 @@ polipostRouter.put("/:postId", async (req, res, next) => {
   try {
     const updatedPost = await Polipost.findOneAndUpdate(
       { _id: req.params.postId, user: req.auth._id },
-      {...req.body, user: req.auth._id},
+      { ...req.body, user: req.auth._id },
       { new: true }
     );
     return res.status(201).send(updatedPost);
