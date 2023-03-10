@@ -8,6 +8,7 @@ const polipostSchema = new Schema({
   },
   Description: {
     type: String,
+    required: true,
   },
   imgUrl: {
     type: String,

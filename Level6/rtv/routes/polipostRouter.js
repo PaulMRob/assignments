@@ -7,7 +7,6 @@ const Polipost = require("./models/polipost");
 polipostRouter.get("/", async (req, res, next) => {
   try {
     const allPosts = await Polipost.find({ post: req.body.title });
-    console.log(allPosts);
     return res.status(200).send(allPosts);
   } catch (err) {
     res.status(500);
@@ -19,8 +18,7 @@ polipostRouter.get("/", async (req, res, next) => {
 polipostRouter.get("/user", async (req, res, next) => {
   try {
     const userPosts = await Polipost.find({ user: req.auth._id });
-    console.log(userPosts)
-    return res.status(200).send(userPosts)
+    return res.status(200).send(userPosts);
   } catch (err) {
     res.status(500);
     return next(err);
@@ -31,9 +29,9 @@ polipostRouter.get("/user", async (req, res, next) => {
 polipostRouter.post("/", async (req, res, next) => {
   try {
     req.body.user = req.auth._id;
-    const newPost = await Polipost(req.body)
-    const savedPost = await newPost.save()
-    return res.status(201).send(savedPost)
+    const newPost = await Polipost(req.body);
+    const savedPost = await newPost.save();
+    return res.status(201).send(savedPost);
   } catch (err) {
     res.status(500);
     return next(err);
@@ -43,7 +41,13 @@ polipostRouter.post("/", async (req, res, next) => {
 //Delete Post
 polipostRouter.delete("/:postId", async (req, res, next) => {
   try {
-    
+    const deletedPost = await Polipost.findOneAndDelete({
+      _id: req.params.postId,
+      user: req.auth._id,
+    });
+    return res
+      .status(200)
+      .send(`Successfully deleted Polipost: ${deletedPost.title}`);
   } catch (err) {
     res.status(500);
     return next(err);
@@ -51,8 +55,14 @@ polipostRouter.delete("/:postId", async (req, res, next) => {
 });
 
 //Update Post
-polipostRouter.put("/postId", async (req, res, next) => {
+polipostRouter.put("/:postId", async (req, res, next) => {
   try {
+    const updatedPost = await Polipost.findOneAndUpdate(
+      { _id: req.params.postId, user: req.auth._id },
+      {...req.body, user: req.auth._id},
+      { new: true }
+    );
+    return res.status(201).send(updatedPost);
   } catch (err) {
     res.status(500);
     return next(err);
