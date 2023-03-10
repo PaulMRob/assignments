@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URL)
 
 app.use("/auth", require("./routes/authRouter"));
 app.use("/api", expressjwt({ secret: process.env.SECRET, algorithms: ["HS256"] }));
-// app.use("/api/todo", require("./routes/todoRouter.js"));
+app.use("/api/polipost", require("./routes/polipostRouter"));
 
 app.use((err, req, res, next) => {
   console.log(err);

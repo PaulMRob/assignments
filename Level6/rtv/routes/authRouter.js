@@ -33,15 +33,13 @@ async function saveNewUser({ req, res, next }) {
 //log in
 authRouter.post("/login", async (req, res, next) => {
   try {
-    
     const user = await User.findOne({ username: req.body.username });
     console.log(user);
     if (!user) {
       res.status(403);
       return next(new Error("Username is not recognized."));
     }
-    
-      if (req.body.password !== user.password) {
+    if (req.body.password !== user.password) {
       res.status(403);
       return next(new Error("Password is not recognized."));
     }
@@ -52,10 +50,10 @@ authRouter.post("/login", async (req, res, next) => {
   }
 });
 
-async function userLogin({req, res, next, user}) {
+async function userLogin({ req, res, next, user }) {
   try {
     const token = jwt.sign(user.toObject(), process.env.SECRET);
-    return res.status(200).send({token, user});
+    return res.status(200).send({ token, user });
   } catch (err) {
     res.status(500);
     return next(err);
