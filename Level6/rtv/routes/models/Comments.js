@@ -16,6 +16,11 @@ const commentSchema = new Schema({
     ref: "User",
     required: true,
   },
+  post: {
+    type: Schema.Types.ObjectId,
+    ref: "Polipost",
+    requied: true,
+  },
 });
 
 module.exports = mongoose.model("Comments", commentSchema);
