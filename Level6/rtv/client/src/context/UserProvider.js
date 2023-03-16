@@ -15,6 +15,7 @@ export default function UserProvider(props) {
     user: JSON.parse(localStorage.getItem("user")) || {},
     token: localStorage.getItem("token") || "",
     posts: [],
+    errMsg: "",
   };
 
   const [userState, setUserState] = useState(initState);
@@ -28,7 +29,7 @@ export default function UserProvider(props) {
         localStorage.setItem("user", JSON.stringify(user));
         setUserState((prevState) => ({ ...prevState, user, token }));
       })
-      .catch((err) => console.log(err.response.data.errMsg));
+      .catch((err) => handleAuthError(err.response.data.errMsg));
   }
 
   function login(credentials) {
@@ -41,7 +42,7 @@ export default function UserProvider(props) {
         getUserPosts();
         setUserState((prevUserState) => ({ ...prevUserState, user, token }));
       })
-      .catch((err) => console.log(err.response.data.errMsg));
+      .catch((err) => handleAuthError(err.response.data.errMsg));
   }
 
   function logout() {
@@ -54,8 +55,22 @@ export default function UserProvider(props) {
     });
   }
 
+  function handleAuthError(errMsg) {
+    setUserState((prevState) => ({
+      ...prevState,
+      errMsg,
+    }));
+  }
+
+  function resetAuthError() {
+    setUserState((prevState) => ({
+      ...prevState,
+      errMsg: "",
+    }));
+  }
+
   function getUserPosts() {
-    userAxios("/api/posts/user")
+    userAxios("/api/polipost/user")
       .then((res) => {
         setUserState((prevState) => ({
           ...prevState,
@@ -67,7 +82,7 @@ export default function UserProvider(props) {
 
   function addPost(newPost) {
     userAxios
-      .post("/api/posts", newPost)
+      .post("/api/polipost", newPost)
       .then((res) => {
         setUserState((prevState) => ({
           ...prevState,
@@ -79,7 +94,7 @@ export default function UserProvider(props) {
 
   return (
     <UserContext.Provider
-      vlaue={{ ...userState, signup, login, logout, addPost }}
+      value={{ ...userState, signup, login, logout, addPost, resetAuthError }}
     >
       {props.children}
     </UserContext.Provider>

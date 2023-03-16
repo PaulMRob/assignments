@@ -6,12 +6,9 @@ const polipostSchema = new Schema({
     type: String,
     required: true,
   },
-  Description: {
+  description: {
     type: String,
     required: true,
-  },
-  imgUrl: {
-    type: String,
   },
   user: {
     type: Schema.Types.ObjectId,

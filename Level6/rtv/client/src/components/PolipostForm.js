@@ -3,7 +3,6 @@ import React, {useState} from 'react'
 const initInputs = {
   title: "",
   desctription: "",
-  imgUrl: "",
 };
 
 const PolipostForm = (props) => {
@@ -24,7 +23,7 @@ const PolipostForm = (props) => {
     setInputs(initInputs)
   }
 
-  const {title, description, imgUrl} = inputs 
+  const {title, description} = inputs 
   
   return (
     <form onSubmit={handleSubmit}>
@@ -40,12 +39,6 @@ const PolipostForm = (props) => {
         value={description}
         onChange={handleChange}
         placeholder="description" />
-      <input 
-        type="text"
-        name="imgUrl"
-        value={imgUrl}
-        onChange={handleChange}
-        placeholder="image url" />
       <button>Add Polipost</button>
     </form>
   )

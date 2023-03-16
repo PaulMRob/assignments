@@ -2,16 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
-  body: {
+  comment: {
     type: String,
     required: true,
   },
-  date: {
-    type: Date,
-    default: Date.now,
-    required: true,
-  },
-  user: {
+  author: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
@@ -19,7 +14,6 @@ const commentSchema = new Schema({
   post: {
     type: Schema.Types.ObjectId,
     ref: "Polipost",
-    requied: true,
   },
 });
 

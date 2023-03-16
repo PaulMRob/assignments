@@ -1,6 +1,6 @@
 const express = require("express");
 const polipostRouter = express.Router();
-const Polipost = require("./models/Polipost");
+const Polipost = require("../models/Polipost");
 
 //Get All Posts
 polipostRouter.get("/", async (req, res, next) => {
@@ -67,5 +67,6 @@ polipostRouter.put("/:postId", async (req, res, next) => {
     return next(err);
   }
 });
+
 
 module.exports = polipostRouter;

@@ -5,6 +5,7 @@ const AuthForm = (props) => {
     handleChange,
     handleSubmit,
     btnText,
+    errMsg,
     inputs: { username, password },
   } = props;
 
@@ -25,6 +26,7 @@ const AuthForm = (props) => {
         placeholder="password"
       />
       <button>{btnText}</button>
+      <p style={{ color: "red" }}>{errMsg}</p>
     </form>
   );
 };

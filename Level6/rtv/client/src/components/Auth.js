@@ -8,7 +8,7 @@ const Auth = () => {
   const [inputs, setInputs] = useState(initInputs);
   const [toggle, setToggle] = useState(false);
 
-  const { signup, login } = useContext(UserContext);
+  const { signup, login, errMsg, resetAuthError } = useContext(UserContext);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -28,6 +28,11 @@ const Auth = () => {
     login(inputs);
   }
 
+  function toggleForm(){
+    setToggle((prev) => !prev);
+    resetAuthError()
+  }
+
   return (
     <div className="auth-container">
       <h3>Signup or login to make posts and comment.</h3>
@@ -38,8 +43,9 @@ const Auth = () => {
             handleSubmit={handleSignup}
             inputs={inputs}
             btnText="Sign up"
+            errMsg={errMsg}
           />
-          <p onClick={() => setToggle((prev) => !prev)}>Already a member?</p>
+          <p onClick={toggleForm}>Already a member?</p>
         </>
       ) : (
         <>
@@ -48,8 +54,9 @@ const Auth = () => {
             handleSubmit={handleLogin}
             inputs={inputs}
             btnText="Login"
+            errMsg={errMsg}
           />
-          <p onClick={() => setToggle((prev) => !prev)}>Not a member?</p>
+          <p onClick={toggleForm}>Not a member?</p>
         </>
       )}
       display list of posts here without ability of post or comment
