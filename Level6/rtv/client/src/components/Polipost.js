@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../context/UserProvider";
+import CommentForm from "./CommentForm";
 
 const Polipost = (props) => {
   const { userAxios } = useContext(UserContext);
@@ -15,20 +16,22 @@ const Polipost = (props) => {
   }
 
   function getPostComments(id) {
-    userAxios(`/api/comments/${id}`)
+    userAxios
+      .get(`/api/comments/${id}`)
       .then((res) => {
-
-        setComments((prevComments) => ([
-          ...prevComments,
-          ...res.data
-        ]))
+        setComments((prevComments) => [...prevComments, ...res.data]);
       })
       .catch((err) => console.log(err.response.data.errMsg));
   }
 
-  function addComment() {}
-
-  // function deleteComment()
+  function deleteComment() {
+    userAxios
+      .delete(`/api/comments/6418a866b1b40e62ae4a446e`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err.response.data.errMsg));
+  }
 
   // function editComment()
 
@@ -40,11 +43,19 @@ const Polipost = (props) => {
       {displayComments && (
         <div>
           {comments.map((comment) => (
-            <p key={comment._id}>{`${comment.username}: ${comment.comment}`}</p>
-            <button>Comment</button>
+            <div className="comment" key={comment._id}>
+              <p>{`${comment.username}: ${comment.comment}`}</p>
+              <button onClick={deleteComment}>Delete</button>
+              <button>Edit</button>
+            </div>
           ))}
         </div>
       )}
+      <CommentForm
+        postID={postID}
+        comments={comments}
+        setComments={setComments}
+      />
     </div>
   );
 };

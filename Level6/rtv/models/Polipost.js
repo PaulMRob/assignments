@@ -25,7 +25,7 @@ const polipostSchema = new Schema({
   },
   timestamp: {
     type: Date,
-    default: Date.now.apply,
+    default: Date.now,
   },
 });
 
