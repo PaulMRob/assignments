@@ -68,5 +68,6 @@ polipostRouter.put("/:postId", async (req, res, next) => {
   }
 });
 
+// Update Post Votes
 
 module.exports = polipostRouter;

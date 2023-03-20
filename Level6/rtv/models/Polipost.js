@@ -15,6 +15,18 @@ const polipostSchema = new Schema({
     ref: "User",
     required: true,
   },
+  upvotes: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+  downvotes: {
+    type: Number,
+    default: 0,
+  },
+  timestamp: {
+    type: Date,
+    default: Date.now.apply,
+  },
 });
 
 module.exports = mongoose.model("Polipost", polipostSchema);

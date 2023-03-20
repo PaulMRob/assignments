@@ -3,10 +3,16 @@ import Polipost from "./Polipost";
 
 const PolipostList = (props) => {
   const { posts } = props;
+
   return (
     <div className="polipost-list">
       {posts.map((post) => (
-        <Polipost {...post} key={post._id} />
+        <Polipost
+          title={post.title}
+          description={post.description}
+          postID={post._id}
+          key={post._id}
+        />
       ))}
     </div>
   );

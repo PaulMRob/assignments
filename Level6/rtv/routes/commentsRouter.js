@@ -2,12 +2,13 @@ const express = require("express");
 const commentsRouter = express.Router();
 const Comments = require("../models/Comments");
 const Polipost = require("../models/Polipost");
+const User = require("../models/User");
 
-//get all comments
-commentsRouter.get("/", async (req, res, next) => {
+//get all comments for a post
+commentsRouter.get("/:postId", async (req, res, next) => {
   try {
-    const allComments = await Comments.find({ comment: req.body.title });
-    return res.status(200).send(allComments);
+    const allPostComments = await Comments.find({ postID: req.params.postId });
+    return res.status(200).send(allPostComments);
   } catch (err) {
     res.status(500);
     return next(err);
@@ -27,12 +28,19 @@ commentsRouter.get("/user", async (req, res, next) => {
 });
 
 //add a comment
-commentsRouter.post("/", async (req, res, next) => {
+commentsRouter.post("/:postId", async (req, res, next) => {
   try {
-    const postId = await Polipost.find({})
-    req.body.user = req.auth._id;
-    console.log(req.body.user)
-    const newComment = await Comments(req.body);
+    const comment = {
+        comment: req.body.comment,
+        username: req.auth.username,
+        postID: req.params.postId
+    }
+    console.log("req.auth:", req.auth)
+    console.log("add a comment:", comment)
+    // req.body.author = req.auth._id;
+    // req.body.username = req.auth.username;
+    // req.body.postID = req.params.postId;
+    const newComment = new Comments(comment);
     const savedComment = await newComment.save();
     return res.status(201).send(savedComment);
   } catch (err) {
