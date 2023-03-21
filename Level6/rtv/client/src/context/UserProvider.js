@@ -94,7 +94,7 @@ export default function UserProvider(props) {
 
   return (
     <UserContext.Provider
-      value={{ ...userState, signup, login, logout, addPost, resetAuthError, userAxios }}
+      value={{ ...userState, signup, login, logout, addPost, resetAuthError, userAxios, getUserPosts }}
     >
       {props.children}
     </UserContext.Provider>

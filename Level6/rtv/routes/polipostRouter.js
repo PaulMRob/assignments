@@ -57,9 +57,9 @@ polipostRouter.delete("/:postId", async (req, res, next) => {
 polipostRouter.put("/:postId", async (req, res, next) => {
   try {
     const updatedPost = await Polipost.findOneAndUpdate(
-      { _id: req.params.postId, user: req.auth._id },
-      { ...req.body, user: req.auth._id },
-      { new: true }
+      { _id: req.params.postId, user: req.auth._id }, //find this one to upddate
+      { ...req.body, user: req.auth._id }, //update object with this data
+      { new: true } //send back updated version
     );
     return res.status(201).send(updatedPost);
   } catch (err) {
@@ -68,6 +68,38 @@ polipostRouter.put("/:postId", async (req, res, next) => {
   }
 });
 
-// Update Post Votes
+// Update UP-vote
+polipostRouter.put("/:id/upvote", async (req, res, next) => {
+  const id = req.params.postId;
+  console.log(id);
+  try {
+    const result = await Polipost.findOneAndUpdate(
+      { _id: req.params.id },
+      { $inc: { upvotes: 1 } },
+      {new: true}
+    );
+    return res.status(201).send(result);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+});
+
+// Update DOWN-vote
+polipostRouter.put("/:id/downvote", async (req, res, next) => {
+  const id = req.params.id;
+  console.log(id);
+  try {
+    const result = await Polipost.findOneAndUpdate(
+      { _id: req.params.id },
+      { $inc: { downvotes: 1 } },
+      {new: true}
+    );
+    return res.status(201).send(result);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+});
 
 module.exports = polipostRouter;

@@ -16,8 +16,8 @@ const polipostSchema = new Schema({
     required: true,
   },
   upvotes: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+    type: Number,
+    default: 0,
   },
   downvotes: {
     type: Number,

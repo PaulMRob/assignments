@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import PolipostForm from "./PolipostForm";
 import PolipostList from "./PolipostList";
 import Polipost from "./Polipost";
@@ -10,7 +10,12 @@ const Profile = () => {
     user: { username },
     addPost,
     posts,
+    getUserPosts
   } = useContext(UserContext);
+
+  useEffect(() => {
+    getUserPosts()
+  }, [])
 
   return (
     <div className="profile">

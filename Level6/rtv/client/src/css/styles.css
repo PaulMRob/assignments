@@ -11,3 +11,93 @@
 .comment {
     display: flex;
 }
+
+.app {
+    background-color: #eee9;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 2.5rem;
+    background-color: #3339;
+}
+
+.auth-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.auth-container>h1 {
+    font-size: 2em;
+    margin: 1.5rem;
+}
+
+.auth-container>p {
+    margin: 1rem;
+    text-decoration: underline;
+}
+
+.auth-container>form {
+    border: 1px solid #3339;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #aaa9;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container>form>input {
+    margin: 1rem .5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.auth-container>form>button {
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.public {
+    height: 100vh;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.profile>h1 {
+    margin: 8px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.profile>h3 {
+    margin: 16px 0;
+    text-decoration: underline;
+}
+
+.profile>form {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0;
+    border: 1px solid #3339;
+    background-color: #aaa9;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.profile>form>input,
+.profile>form>button {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+

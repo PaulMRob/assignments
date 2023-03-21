@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../context/UserProvider";
 import CommentForm from "./CommentForm";
+import VoteTracker from "./VoteTracker";
 
 const Polipost = (props) => {
   const { userAxios } = useContext(UserContext);
 
-  const { title, description, postID } = props;
+  const { title, description, postID, upvotes, downvotes } = props;
 
   const [displayComments, setDisplayComments] = useState(false);
   const [comments, setComments] = useState([]);
@@ -35,12 +36,11 @@ const Polipost = (props) => {
       .catch((err) => console.log(err.response.data.errMsg));
   }
 
-  // function editComment()
-
   return (
     <div className="polipost">
       <h1>{title}</h1>
-      <h3>{description}</h3>
+      <p>{description}</p>
+      <VoteTracker _id={postID} upvotes={upvotes} downvotes={downvotes} />
       <p onClick={toggleComments}>Read Comments</p>
       {displayComments && (
         <div>

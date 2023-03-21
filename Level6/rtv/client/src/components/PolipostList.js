@@ -10,6 +10,8 @@ const PolipostList = (props) => {
         <Polipost
           title={post.title}
           description={post.description}
+          upvotes={post.upvotes}
+          downvotes={post.downvotes}
           postID={post._id}
           key={post._id}
         />
