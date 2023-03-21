@@ -6,7 +6,7 @@ const CommentForm = (props) => {
     comment: "",
   });
 
-  const { postID, comments, setComments } = props;
+  const { postID, setComments } = props;
 
   const { userAxios } = useContext(UserContext);
 

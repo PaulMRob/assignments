@@ -49,7 +49,6 @@ export default function App() {
   useEffect(() => {
     getMovies();
   }, []);
-
   return (
     <div className="bounty-container">
       <AddBountyForm submit={addBounty} btnText="Add Bounty" />

@@ -24,11 +24,13 @@ const Polipost = (props) => {
       .catch((err) => console.log(err.response.data.errMsg));
   }
 
-  function deleteComment() {
+  function deleteComment(commentId) {
     userAxios
-      .delete(`/api/comments/6418a866b1b40e62ae4a446e`)
+      .delete(`/api/comments/${commentId}`)
       .then((res) => {
-        console.log(res.data);
+        setComments((prevComments) =>
+          prevComments.filter((comment) => comment._id !== commentId)
+        );
       })
       .catch((err) => console.log(err.response.data.errMsg));
   }
@@ -45,7 +47,7 @@ const Polipost = (props) => {
           {comments.map((comment) => (
             <div className="comment" key={comment._id}>
               <p>{`${comment.username}: ${comment.comment}`}</p>
-              <button onClick={deleteComment}>Delete</button>
+              <button onClick={() => deleteComment(comment._id)}>Delete</button>
               <button>Edit</button>
             </div>
           ))}
