@@ -17,7 +17,14 @@ mongoose
     console.log("Connection to database failed:", dbErr.message);
   });
 
-  //Routes
+//Routes
+app.use("/auth", require("./routes/authRouter"));
+app.use(
+  "/api",
+  expressjwt({ secret: process.env.SECRET, algorithms: ["HS256"] })
+);
+app.use("/api/bookpost", require("./routes/bookpostRouter"))
+
 
 app.listen(9000, () => {
   console.log(`Server is running on local port 9000`);
