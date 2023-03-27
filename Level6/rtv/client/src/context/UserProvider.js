@@ -19,7 +19,7 @@ export default function UserProvider(props) {
   };
 
   const [userState, setUserState] = useState(initState);
-  
+  const [allPosts, setAllPosts] = useState([]);
 
   function signup(credentials) {
     axios
@@ -41,6 +41,7 @@ export default function UserProvider(props) {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         getUserPosts();
+        getAllPosts();
         setUserState((prevUserState) => ({ ...prevUserState, user, token }));
       })
       .catch((err) => handleAuthError(err.response.data.errMsg));
@@ -70,7 +71,12 @@ export default function UserProvider(props) {
     }));
   }
 
-
+  function getAllPosts() {
+    userAxios
+      .get("/api/polipost")
+      .then((res) => setAllPosts(res.data))
+      .catch((err) => console.log(err));
+  }
 
   function getUserPosts() {
     userAxios("/api/polipost/user")
@@ -91,13 +97,63 @@ export default function UserProvider(props) {
           ...prevState,
           posts: [...prevState.posts, res.data],
         }));
+        setAllPosts((prevPosts) => [...prevPosts, res.data]);
       })
       .catch((err) => console.log(err.resposne.data.errMsg));
   }
 
+  function upVote(postId) {
+    userAxios
+      .put(`/api/polipost/${postId}/upvote`)
+      .then((res) => {
+        // console.log(res.data);
+        setAllPosts((prevPosts) =>
+          prevPosts.map((post) => (postId !== post._id ? post : res.data))
+        );
+        setUserState((prevUserState) => ({
+          ...prevUserState,
+          posts: prevUserState.posts.map((post) =>
+            postId !== post._id ? post : res.data
+          ),
+        }));
+        console.log(allPosts);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function downVote(postId) {
+    userAxios
+      .put(`/api/polipost/${postId}/downvote`)
+      .then((res) => {
+        setAllPosts((prevPosts) =>
+          prevPosts.map((post) => (postId !== post._id ? post : res.data))
+        );
+        setUserState((prevUserState) => ({
+          ...prevUserState,
+          posts: prevUserState.posts.map((post) =>
+            postId !== post._id ? post : res.data
+          ),
+        }));
+        console.log(allPosts);
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <UserContext.Provider
-      value={{ ...userState, signup, login, logout, addPost, resetAuthError, userAxios, getUserPosts }}
+      value={{
+        ...userState,
+        signup,
+        login,
+        logout,
+        addPost,
+        resetAuthError,
+        userAxios,
+        getUserPosts,
+        upVote,
+        downVote,
+        allPosts,
+      }}
     >
       {props.children}
     </UserContext.Provider>

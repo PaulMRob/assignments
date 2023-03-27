@@ -3,23 +3,13 @@ import PolipostList from "./PolipostList";
 import Polipost from "./Polipost";
 import axios from "axios";
 
-const Public = () => {
+const Public = (props) => {
+  const { allPosts } = props;
   const [publicState, setPublicState] = useState();
-
-  function getAllPosts() {
-    axios
-      .get("/api/polipost")
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  }
-
-  useEffect(() => {
-    getAllPosts();
-  }, []);
 
   return (
     <div className="public">
-      <PolipostList />
+      <PolipostList posts = {allPosts}/>
     </div>
   );
 };

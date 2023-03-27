@@ -8,7 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { UserContext } from "./context/UserProvider";
 
 export default function App() {
-  const { token, logout, redirectTo } = useContext(UserContext);
+  const { token, logout, redirectTo, allPosts } = useContext(UserContext);
 
   return (
     <div className="app">
@@ -30,7 +30,7 @@ export default function App() {
           path="/public"
           element={
             <ProtectedRoute token={token} redirectTo="/">
-              <Public />
+              <Public allPosts={allPosts}/>
             </ProtectedRoute>
           }
         />

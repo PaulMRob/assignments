@@ -4,7 +4,7 @@ import CommentForm from "./CommentForm";
 import VoteTracker from "./VoteTracker";
 
 const Polipost = (props) => {
-  const { userAxios } = useContext(UserContext);
+  const { userAxios, upVote, downVote } = useContext(UserContext);
 
   const { title, description, postID, upvotes, downvotes } = props;
 
@@ -40,7 +40,7 @@ const Polipost = (props) => {
     <div className="polipost">
       <h1>{title}</h1>
       <p>{description}</p>
-      <VoteTracker _id={postID} upvotes={upvotes} downvotes={downvotes} />
+      <VoteTracker _id={postID} upvotes={upvotes} downvotes={downvotes} downVote={downVote} upVote={upVote} />
       <p onClick={toggleComments}>Read Comments</p>
       {displayComments && (
         <div>

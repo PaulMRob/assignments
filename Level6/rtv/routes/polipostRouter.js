@@ -75,8 +75,11 @@ polipostRouter.put("/:id/upvote", async (req, res, next) => {
   try {
     const result = await Polipost.findOneAndUpdate(
       { _id: req.params.id },
-      { $inc: { upvotes: 1 } },
-      {new: true}
+      {
+        $addToSet: { upvotes: req.auth._id },
+        $pull: { downvotes: req.auth._id },
+      },
+      { new: true }
     );
     return res.status(201).send(result);
   } catch (err) {
@@ -92,8 +95,11 @@ polipostRouter.put("/:id/downvote", async (req, res, next) => {
   try {
     const result = await Polipost.findOneAndUpdate(
       { _id: req.params.id },
-      { $inc: { downvotes: 1 } },
-      {new: true}
+      {
+        $addToSet: { downvotes: req.auth._id },
+        $pull: { upvotes: req.auth._id },
+      },
+      { new: true }
     );
     return res.status(201).send(result);
   } catch (err) {
