@@ -5,7 +5,7 @@ const Bookpost = require("../models/Bookpost")
 //Get All Posts
 bookpostRouter.get("/", async (req, res, next) => {
   try {
-    const allPosts = await Bookpost.find({ post: req.body.title });
+    const allPosts = await Bookpost.find({ post: req.body.booktitle });
     return res.status(200).send(allPosts);
   } catch (err) {
     res.status(500);
@@ -46,7 +46,7 @@ bookpostRouter.delete("/:postId", async (req, res, next) => {
     });
     return res
       .status(200)
-      .send(`Successfully deleted Bookpost: ${deletedPost.title}`);
+      .send(`Successfully deleted your discussion thread from: ${deletedPost.booktitle}`);
   } catch (err) {
     res.status(500);
     return next(err);
