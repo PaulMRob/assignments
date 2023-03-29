@@ -42,11 +42,11 @@ bookpostRouter.delete("/:postId", async (req, res, next) => {
   try {
     const deletedPost = await Bookpost.findOneAndDelete({
       _id: req.params.postId,
-      user: req.auth._id,
+      // user: req.auth._id,
     });
     return res
       .status(200)
-      .send(`Successfully deleted your discussion thread from: ${deletedPost.booktitle}`);
+      .send(`Successfully deleted your discussion thread: ${deletedPost.booktitle}`);
   } catch (err) {
     res.status(500);
     return next(err);

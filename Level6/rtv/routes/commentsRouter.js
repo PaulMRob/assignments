@@ -30,14 +30,13 @@ commentsRouter.get("/user", async (req, res, next) => {
 commentsRouter.post("/:postId", async (req, res, next) => {
   try {
     const comment = {
-        comment: req.body.comment,
-        username: req.auth.username,
-        postID: req.params.postId
-    }
-    console.log("req.auth:", req.auth)
-    console.log("add a comment:", comment)
+      comment: req.body.comment,
+      username: req.auth.username,
+      postID: req.params.postId,
+    };
     const newComment = new Comments(comment);
     const savedComment = await newComment.save();
+    console.log("SavedComment:", savedComment)
     return res.status(201).send(savedComment);
   } catch (err) {
     res.status(500);
@@ -52,11 +51,14 @@ commentsRouter.delete("/:commentId", async (req, res, next) => {
       _id: req.params.commentId,
       user: req.auth._id,
     });
-    return res.status(200).send(`Successfully deleted comment: ${deletedComment.comment}`)
+    console.log("deletedComment:", deletedComment);
+    return res
+      .status(200)
+      .send(`Successfully deleted comment: ${deletedComment.comment}`);
   } catch (err) {
-    res.status(500)
-    return next(err)
+    res.status(500);
+    return next(err);
   }
-})
+});
 
 module.exports = commentsRouter;
