@@ -33,19 +33,7 @@ export default function UserProvider(props) {
         .catch((err) => handleAuthError(err.response.data.errMsg));
     }
 
-    function login(credentials) {
-      axios
-        .post("/auth/login", credentials)
-        .then((res) => {
-          const { user, token } = res.data;
-          localStorage.setItem("token", token);
-          localStorage.setItem("user", JSON.stringify(user));
-          getUserBookposts();
-          getAllBookposts();
-          setUserState((prevUserState) => ({ ...prevUserState, user, token }));
-        })
-        .catch((err) => handleAuthError(err.response.data.errMsg));
-    }
+    
 
     function logout() {
       localStorage.removeItem("token");
@@ -78,16 +66,6 @@ export default function UserProvider(props) {
         .catch((err) => console.log(err));
     }
 
-    function getUserBookposts() {
-      userAxios("/api/bookpost/user")
-        .then((res) => {
-          setUserState((prevState) => ({
-            ...prevState,
-            bookposts: res.data,
-          }));
-        })
-        .catch((err) => console.log(err.response.data.errMsg));
-    }
 
     function addBookpost(newBookpost) {
       userAxios
@@ -112,7 +90,6 @@ export default function UserProvider(props) {
           addBookpost,
           resetAuthError,
           userAxios,
-          getUserBookposts,
           allBookposts,
         }}
       >

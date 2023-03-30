@@ -3,6 +3,8 @@ import React, { useState } from "react";
 const initInputs = {
   booktitle: "",
   quotation: "",
+  pagenumber: 0,
+  author: "",
 };
 
 const BookpostForm = (props) => {
@@ -23,9 +25,9 @@ const BookpostForm = (props) => {
     setInputs(initInputs);
   }
 
-  const { booktitle, quotation } = inputs;
+  const { booktitle, quotation, pagenumber, author } = inputs;
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="bookpost-form" onSubmit={handleSubmit}>
       <input
         type="text"
         name="booktitle"
@@ -35,12 +37,26 @@ const BookpostForm = (props) => {
       />
       <input
         type="text"
+        name="author"
+        value={author}
+        onChange={handleChange}
+        placeholder="e.g. Toni Morrison"
+      />
+      <input
+        type="number"
+        name="pagenumber"
+        value={pagenumber}
+        onChange={handleChange}
+        placeholder="123"
+      />
+      <input
+        type="text"
         name="quotation"
         value={quotation}
         onChange={handleChange}
         placeholder="quotation"
       />
-      <button>Add Bookpost</button>
+      <button>Submit</button>
     </form>
   );
 };
