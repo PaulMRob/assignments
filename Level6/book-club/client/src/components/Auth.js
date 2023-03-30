@@ -1,14 +1,18 @@
 import React, { useState, useContext } from "react";
 import AuthForm from "./AuthForm";
 import { UserContext } from "../context/UserProvider";
+import { login } from "../utilities/authentication/login";
+import { useNavigate } from "react-router-dom";
 
 const initInputs = { username: "", password: "" };
 
 const Auth = () => {
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState(initInputs);
   const [toggle, setToggle] = useState(false);
 
-  const { signup, login, errMsg, resetAuthError } = useContext(UserContext);
+  const { signup, errMsg, resetAuthError, setUserState } =
+    useContext(UserContext);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -23,9 +27,13 @@ const Auth = () => {
     signup(inputs);
   }
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
-    login(inputs);
+    const { token, user, error } = await login(inputs);
+    if (!error) {
+      setUserState((prev) => ({ ...prev, user, token }));
+      navigate("/profile");
+    }
   }
 
   function toggleForm() {

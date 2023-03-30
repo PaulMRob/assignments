@@ -1,21 +1,15 @@
-import React from 'react'
+import userAxios from "../userAxios";
 
-const login = () => {
+export const login = async (credentials) => {
+  try {
+    const response = await userAxios.post("auth/login", credentials);
+    const { user, token } = response.data;
 
-function login(credentials) {
-  axios
-    .post("/auth/login", credentials)
-    .then((res) => {
-      const { user, token } = res.data;
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-      getUserBookposts();
-      getAllBookposts();
-      setUserState((prevUserState) => ({ ...prevUserState, user, token }));
-    })
-    .catch((err) => handleAuthError(err.response.data.errMsg));
-}
-  return 
-}
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
 
-export default login
+    return { user, token };
+  } catch (error) {
+    return { error };
+  }
+};

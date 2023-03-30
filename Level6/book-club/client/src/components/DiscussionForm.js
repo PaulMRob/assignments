@@ -2,23 +2,19 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../context/UserProvider";
 
 const DiscussionForm = (props) => {
-  const [discussionForm, setDiscussionForm] = useState({ discussion: "" });
+  const [value, setValue] = useState("");
 
   const { postID, setDiscussion } = props;
   const { userAxios } = useContext(UserContext);
 
   function handleChange(e) {
-    const { name, value } = e.target;
-    setDiscussion((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setValue(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    addDiscussion(postID, discussionForm);
-    setDiscussionForm({ discussion: "" });
+    addDiscussion(postID, { discussion: value });
+    setValue("");
   }
 
   function addDiscussion(id, newDiscussion) {
@@ -34,7 +30,7 @@ const DiscussionForm = (props) => {
       <button type="submit">Submit</button>
       <input
         type="text"
-        value={discussionForm.discussion}
+        value={value}
         name="discussion"
         onChange={handleChange}
         placeholder="Write your thoughts here..."

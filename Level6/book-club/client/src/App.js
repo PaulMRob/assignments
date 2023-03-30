@@ -2,23 +2,20 @@ import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { UserContext } from "./context/UserProvider";
 import Navbar from "./components/Navbar";
-import Auth from "./components/Auth"
-import Profile from "./components/Profile"
-import Public from "./components/Public"
-import ProtectedRoute from "./components/ProtectedRoute"
+import Auth from "./components/Auth";
+import Profile from "./components/Profile";
+import Public from "./components/Public";
+import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
 
 function App() {
-  const {token, logout, redirectTo, allBookposts} = useContext(UserContext)
+  const { token, logout, redirectTo, allBookposts } = useContext(UserContext);
 
   return (
     <div className="App">
       <Navbar logout={logout} token={token} />
       <Routes>
-        <Route
-          path="/"
-          element={token ? <Navigate to="/profile" /> : <Auth />}
-        />
+        <Route path="/" element={<Auth />} />
         <Route
           path="/profile"
           element={

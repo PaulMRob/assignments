@@ -3,25 +3,26 @@ import BookpostForm from "./BookpostForm";
 import BookpostList from "./BookpostList";
 import { UserContext } from "../context/UserProvider";
 import useUserBookposts from "../utilities/hooks/useUserBookposts";
-import "../css/profile.css"
+import "../css/profile.css";
 
 const Profile = () => {
-
-  const {userBookposts} = useUserBookposts
+  const { userBookposts } = useUserBookposts();
 
   const {
     user: { username },
     addBookpost,
-    bookposts,
   } = useContext(UserContext);
 
+  console.log("Profile", userBookposts);
 
   return (
     <div className="profile">
       <h1>Welcome @{username}</h1>
       <h3>Start a new discussion</h3>
       <BookpostForm addBookpost={addBookpost} />
-      <BookpostList bookposts={userBookposts} />
+      <BookpostList
+        bookposts={userBookposts.bookposts ? userBookposts.bookposts : []}
+      />
     </div>
   );
 };
