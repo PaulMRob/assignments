@@ -2,8 +2,11 @@ import React from "react";
 import Bookpost from "./Bookpost";
 
 const BookpostList = (props) => {
-  const { bookposts } = props;
-  const savedArr = bookposts.sort((a, b) => (a.upvotes > b.upvotes ? -1 : 1));
+  const { allBookposts } = props;
+  console.log("allBookPosts:", allBookposts)
+  const savedArr = allBookposts.sort((a, b) =>
+    a.upvotes > b.upvotes ? -1 : 1
+  );
   return (
     <div className="bookpost-list">
       {savedArr.map((bookpost) => (

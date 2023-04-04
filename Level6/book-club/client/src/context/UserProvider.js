@@ -51,12 +51,12 @@ export default function UserProvider(props) {
     }));
   }
 
-  function getAllBookposts() {
-    userAxios
-      .get("/api/bookpost")
-      .then((res) => setAllBookposts(res.data))
-      .catch((err) => console.log(err));
-  }
+  // function getAllBookposts() {
+  //   userAxios
+  //     .get("/api/bookpost")
+  //     .then((res) => setAllBookposts(res.data))
+  //     .catch((err) => console.log(err));
+  // }
 
   function addBookpost(newBookpost) {
     userAxios
@@ -82,6 +82,7 @@ export default function UserProvider(props) {
         resetAuthError,
         userAxios,
         allBookposts,
+        setAllBookposts,
       }}
     >
       {props.children}

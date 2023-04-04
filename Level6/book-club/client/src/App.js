@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar logout={logout} token={token} />
+      {/* <Navbar logout={logout} token={token} /> */}
       <Routes>
         <Route path="/" element={<Auth />} />
         <Route

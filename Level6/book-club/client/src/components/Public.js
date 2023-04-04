@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
 import BookpostList from "./BookpostList";
+import BookpostForm from "./BookpostForm";
 import Bookpost from "./Bookpost";
-import axios from "axios";
 
 const Public = (props) => {
-  const { allBookposts } = props;
-  const [publicState, setPublicState] = useState();
+  const { allBookposts, addBookpost, token } = props;
 
   return (
     <div className="public">
-      <BookpostList posts = {allBookposts}/>
+      {token && <BookpostForm addBookpost={addBookpost} />}
+      <BookpostList bookposts={allBookposts.bookposts ? allBookposts.bookposts : []} />
     </div>
   );
 };

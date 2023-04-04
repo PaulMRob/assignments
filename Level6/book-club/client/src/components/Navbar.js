@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import "../css/nav.css"
 
 const Navbar = (props) => {
-  const { logout, token } = props;
+  const { token, logout } = props;
+
   return (
     <div className="nav">
       {token && <Link to="/profile">Profile</Link>}
