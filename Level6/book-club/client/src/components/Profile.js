@@ -4,10 +4,11 @@ import BookpostForm from "./BookpostForm";
 import BookpostList from "./BookpostList";
 import { UserContext } from "../context/UserProvider";
 import useUserBookposts from "../utilities/hooks/useUserBookposts";
+import userImage from "../constants/imgs/user-img.jpg"
 import "../css/profile.css";
 
 const Profile = () => {
-  const {token, logout} = useContext(UserContext)
+  const { token, logout } = useContext(UserContext);
   const { userBookposts } = useUserBookposts();
 
   const {
@@ -15,14 +16,12 @@ const Profile = () => {
     addBookpost,
   } = useContext(UserContext);
 
-  console.log("Profile", userBookposts);
-
   return (
     <div className="profile">
       <Navbar logout={logout} token={token} />
-      <h3>Start a new discussion</h3>
-      <BookpostForm addBookpost={addBookpost} />
+      <img className="user-img" src={userImage} />
       <BookpostList
+        comment="hi paul"
         bookposts={userBookposts.bookposts ? userBookposts.bookposts : []}
       />
     </div>

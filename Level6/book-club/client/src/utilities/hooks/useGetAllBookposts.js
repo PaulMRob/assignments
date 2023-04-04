@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import userAxios from "../userAxios";
 
-const useGetAllBookposts = (props) => {
-  const { allBookposts, setAllBookposts } = props;
+const useGetAllBookposts = () => {
+const [allBookposts, setAllBookposts] = useState([])
+
 
   useEffect(() => {
     userAxios("/api/bookpost")
       .then((res) => {
-        setAllBookposts(res.data);
+        setAllBookposts((prev) => ({
+            ...prev,
+            bookposts: res.data,
+        }));
       })
       .catch((err) => console.log(err.resposne.data.errMsg));
   }, []);
-    console.log(allBookposts)
+
   return { allBookposts };
 };
 

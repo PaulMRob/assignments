@@ -4,6 +4,7 @@ import userAxios from "../userAxios";
 const useUserBookposts = () => {
   const [userBookposts, setUserBookposts] = useState([]);
 
+  
   useEffect(() => {
     userAxios("/api/bookpost/user")
       .then((res) => {
@@ -14,6 +15,7 @@ const useUserBookposts = () => {
       })
       .catch((err) => console.log(err.resposne.data.errMsg));
   }, []);
+  console.log(userBookposts)
 
   return { userBookposts };
 };

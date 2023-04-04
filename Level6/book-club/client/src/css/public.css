@@ -1,0 +1,42 @@
+.nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav > a {
+    text-decoration: none;
+    color: #6e6c6b
+}
+
+.nav > a :hover {
+    color: black;
+    border: 2px solid #555555;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.nav > button {
+    background-color: #ffffff;
+    border: none;
+    color: #6e6c6b;
+    font-size: 1rem;
+    padding: 3px;
+    width: fit-content;
+    cursor: pointer;
+    margin: 5px;
+    box-shadow: none;
+}
+
+.nav > button :hover {
+    border: 2px solid #555555;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+button span {
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s;
+}
+
+.bookpost-form {
+    margin-top: 50px
+}

@@ -9,7 +9,7 @@ const Navbar = (props) => {
     <div className="nav">
       {token && <Link to="/profile">Profile</Link>}
       <Link to="/public">Public</Link>
-      {token && <button onClick={logout}>logout</button>}
+      {token && <button onClick={logout}>Logout</button>}
     </div>
   );
 };
