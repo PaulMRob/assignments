@@ -1,4 +1,6 @@
 import React from "react";
+import bookImg from "../constants/imgs/73704.jpg"
+import "../css/auth-form.css"
 
 const AuthForm = (props) => {
   const {
@@ -10,7 +12,7 @@ const AuthForm = (props) => {
   } = props;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="auth-form">
       <input
         type="text"
         value={username}
@@ -25,8 +27,9 @@ const AuthForm = (props) => {
         onChange={handleChange}
         placeholder="password"
       />
-      <button>{btnText}</button>
+      <button className="auth-form-btn">{btnText}</button>
       <p style={{ color: "red" }}>{errMsg}</p>
+      <img className="book-img" src={bookImg} />
     </form>
   );
 };

@@ -1,42 +1,40 @@
-.nav {
-    display: flex;
-    justify-content: space-around;
+.public {
+    text-align: center;
+    font-family: 'Wix Madefor Display', sans-serif;
+    letter-spacing: 1.5px;
 }
 
-.nav > a {
-    text-decoration: none;
-    color: #6e6c6b
-}
-
-.nav > a :hover {
-    color: black;
-    border: 2px solid #555555;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.nav > button {
-    background-color: #ffffff;
+.btn-new {
+    border-radius: 4px;
+    background-color: #4b4a4a;
     border: none;
-    color: #6e6c6b;
-    font-size: 1rem;
-    padding: 3px;
-    width: fit-content;
+    color: #FFFFFF;
+    font-size: 28px;
+    padding: 20px;
+    width: 100%;
+    transition-duration: 0.4s;
     cursor: pointer;
-    margin: 5px;
-    box-shadow: none;
-}
-
-.nav > button :hover {
-    border: 2px solid #555555;
+    margin: 5px 10px 5px 10px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition-duration: 0.4s;
 }
 
-button span {
+.btn-discard {
+    border-radius: 4px;
+    background-color: #4b4a4a;
+    border: none;
+    color: #f3ebeb;
+    font-size: 15px;
+    padding: 5px;
+    width: 6%;
+    transition-duration: 0.4s;
     cursor: pointer;
-    position: relative;
-    transition: 0.5s;
+    margin: 5px 10px 5px 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition-duration: 0.4s;
 }
 
-.bookpost-form {
-    margin-top: 50px
+.btn-new:hover {
+    scale: 1.03;
 }
+

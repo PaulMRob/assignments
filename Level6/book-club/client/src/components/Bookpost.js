@@ -20,7 +20,7 @@ const Bookpost = (props) => {
     userAxios
       .get(`/api/discussion/${id}`)
       .then((res) => {
-        setDiscussion((prevDiscussion) => [...prevDiscussion, ...res.data]);
+        setDiscussion(res.data);
       })
       .catch((err) => console.log(err.response.data.errMsg));
   }
@@ -36,7 +36,7 @@ const Bookpost = (props) => {
       .catch((err) => console.log(err.response.data.errMsg));
   }
   return (
-    <div className="bookpost">
+    <div className="bookpost" style={{ background: "#12121240", padding: "40px", margin: '20px', borderRadius: "4px" }}>
       <h1>{booktitle}</h1>
       <p>{quotation}</p>
       <VoteTracker
@@ -48,23 +48,25 @@ const Bookpost = (props) => {
       />
       <p onClick={toggleDiscussion}>Read Discussion</p>
       {displayDiscussion && (
-        <div>
-          {discussion.map((discussion) => (
-            <div className="discussion" key={discussion._id}>
-              <p>{`${discussion.username}: ${discussion.discussion}`}</p>
-              <button onClick={() => deleteDiscussion(discussion._id)}>
-                Delete
-              </button>
-              <button>Edit</button>
-            </div>
-          ))}
-        </div>
+        <>
+          <div>
+            {discussion.map((discussion) => (
+              <div className="discussion" key={discussion._id}>
+                <p>{`${discussion.username}: ${discussion.discussion}`}</p>
+                <button onClick={() => deleteDiscussion(discussion._id)}>
+                  Delete
+                </button>
+                <button>Edit</button>
+              </div>
+            ))}
+          </div>
+          <DiscussionForm
+            postID={postID}
+            discussion={discussion}
+            setDiscussion={setDiscussion}
+          />
+        </>
       )}
-      <DiscussionForm
-        postID={postID}
-        discussion={discussion}
-        setDiscussion={setDiscussion}
-      />
     </div>
   );
 };

@@ -1,85 +1,84 @@
+.auth {
+    margin: auto;
+    width: 50%;
+    overflow: visible;
+}
+
 .auth-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    border: 3px solid black;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
     background-color: #ffffff;
+    width: fit-content;
+    justify-self: center;
+    margin-top: 5rem;
+    /* background: #12121240; */
 }
 
 h3 {
-    grid-column-start: 2;
-    grid-row-start: 1;
-    align-self: start;
     text-transform: lowercase;
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 200;
     letter-spacing: 0.5rem;
     max-width: 670px;
-    justify-self: center;
+    margin-bottom: 14px;
 }
 
-.user-img {
-    grid-column-start: 2;
-    grid-row-start: 1;
+.book-img {
     justify-self: center;
-    max-width: 200px;
-    margin-top: 200px
+    width: 170px;
+    
 }
 
 .auth-p-1 {
-    grid-column-start: 2;
-    grid-row-start: 1;
-    margin-top: 18.75rem;
+    
+    margin-top: 1rem;
     text-transform: uppercase;
     font-size: 12px;
 }
 
 .auth-p-2 {
-    grid-column-start: 2;
-    grid-row-start: 1;
-    align-self: end;
     text-transform: uppercase;
     font-size: 12px;
     cursor: pointer;
-    margin-top: 700px;
-    margin-bottom: 600px;
-}
-
-form {
-    grid-column-start: 2;
-    grid-row-start: 1;
-    margin-top: 400px;
-    
-}
-
-input {
-    margin: 2rem;
-    width: 70%;
-    padding: 5px;
-}
-
-button {
-    display: inline-block;
-    border-radius: 4px;
-    background-color: #6e6c6b;
-    border: none;
-    color: #FFFFFF;
-    font-size: 28px;
-    padding: 20px;
-    width: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     transition-duration: 0.4s;
-    cursor: pointer;
-    margin: 5px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
+.auth-p-2:hover {
+    transform: scale(1.25) perspective(25px)
 }
 
-.auth-img {
-    max-width: 100%;  
-    min-width: 480px; 
+@media only screen and (max-width: 600px) {
+    .auth {
+        width: 100%;
+    }
+
+    .auth-container{
+        margin: 0;
+        border: none;
+    }
+
+    h3 {
+        font-size: 20px;
+        letter-spacing: 0;
+    }
+
+    .auth-p-1 {
+        font-size: px;
+    }
+}
+
+@media only screen and (min-device-width : 601px) and (max-device-width : 1204px) {
+    .auth {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
 }
 

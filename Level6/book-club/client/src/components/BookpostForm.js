@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../css/bookpost.css"
 
 const initInputs = {
   booktitle: "",
@@ -29,6 +30,7 @@ const BookpostForm = (props) => {
   return (
     <form className="bookpost-form" onSubmit={handleSubmit}>
       <input
+        className="input1"
         type="text"
         name="booktitle"
         value={booktitle}
@@ -36,27 +38,31 @@ const BookpostForm = (props) => {
         placeholder="Book Title"
       />
       <input
+        className="input2"
         type="text"
         name="author"
         value={author}
         onChange={handleChange}
-        placeholder="e.g. Toni Morrison"
+        placeholder="Author"
       />
       <input
+        className="input3"
         type="number"
         name="pagenumber"
         value={pagenumber}
         onChange={handleChange}
         placeholder="123"
+        width={100}
       />
-      <input
+      <textarea
+        className="quote"
         type="text"
         name="quotation"
         value={quotation}
         onChange={handleChange}
         placeholder="quotation"
       />
-      <button>Submit</button>
+      <button className="submit-btn">Submit</button>
     </form>
   );
 };
